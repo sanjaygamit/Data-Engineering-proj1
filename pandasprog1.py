@@ -1,6 +1,7 @@
 import pandas as pd
 import json
 import glob
+import re
 
 file_path = 'data-engineering-proj1/retail_db/schemas.json'
 schemas = json.load(open(file_path, 'r'))
@@ -64,14 +65,20 @@ categories = pd.read_csv('Data-Engineering-proj1/retail_db/categories/part-00000
 
 # file_path = glob.glob('Data-Engineering-proj1/retail_db/**', recursive=True)
 # file_path = glob.glob('Data-Engineering-proj1/retail_db/*/*', recursive=True)
-# src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursive=True)
+src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursive=True)
 # for file in src_file_names:
-#     print(file)
+#     print(re.split('/',file))
+    # print(re.split('/'),file)
 
-
+datafilter = filter( lambda d1: d1.split('/')[2]=='customers', src_file_names)
+# print(list(datafilter))
+df=pd.read_csv(list(datafilter)[0], header=None)
+print(df.head(5))
 # for file_name in src_file_names:
 #     df = pd.read_csv(file_name, header=None)
-#     print(f'Shape of {file_name} is {df.shape}')
+#     # print(f'Shape of {file_name} is {df.shape}')
+#     print(df.head(5))
+
 
 
 # schemas = json.load(open('Data-Engineering-proj1/retail_db/schemas.json', 'r'))
@@ -79,4 +86,5 @@ categories = pd.read_csv('Data-Engineering-proj1/retail_db/categories/part-00000
 
 
 # filter(lambda order :order.split(',')[3]=='COMPLETE, orders)
+
 
