@@ -34,7 +34,7 @@ customers = pd.read_csv('Data-Engineering-proj1/retail_db/customers/part-00000',
 # print(orders.groupby(['orders_month','order_status'])['order_id'].agg(order_count='count'))
 
 # print(categories)
-print(customers)
+# print(customers)
 # print(departments)
 # print(order_items)
 # print(orders)
@@ -71,7 +71,7 @@ src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursiv
     # print(re.split('/'),file)
 
 data_path_filter = filter( lambda d1: d1.split('/')[2]=='customers', src_file_names)
-# print(list(datafilter))
+# print(list(data_path_filter))
 df=pd.read_csv(list(data_path_filter)[0], header=None , names=customers_col)
 print(df.head(5))
 # for file_name in src_file_names:
