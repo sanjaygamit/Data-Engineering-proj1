@@ -64,14 +64,16 @@ import glob
 # file_path = glob.glob('Data-Engineering-proj1/retail_db/**', recursive=True)
 # file_path = glob.glob('Data-Engineering-proj1/retail_db/*/*', recursive=True)
 src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursive=True)
-for file in src_file_names:
-    print(file)
+# for file in src_file_names:
+#     print(file)
 
 
-for file_name in src_file_names:
-    df = pd.read_csv(file_name, header=None)
-    print(f'Shape of {file_name} is {df.shape}')
+# for file_name in src_file_names:
+#     df = pd.read_csv(file_name, header=None)
+#     print(f'Shape of {file_name} is {df.shape}')
 
 
+schemas = json.load(open('Data-Engineering-proj1/retail_db/schemas.json', 'r'))
+# print(schemas)  
 
 
