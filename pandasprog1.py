@@ -52,8 +52,10 @@ products = pd.read_csv('data/retail_db/products/part-00000', header=None, names=
 # print(orders.sort_values(['order_customer_id','order_date']))
 # print(orders.sort_values(['order_customer_id','order_date'],ascending=False))
 # print(customer_orders.shape)
-print(orders)
+# print(orders)
 # print(customer_orders.query('customer_id >=10'))
 # import os 
 # os.makedirs('data/retail_db/orders_json/part-00000', exist_ok=True) 
 # orders.to_json('data/retail_db/orders_json/part-00000.json', orient='records', lines=True)
+
+import glob
