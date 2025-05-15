@@ -1,5 +1,5 @@
 # import os
-# orders_file = open('data/retail_db/orders/part-00000', 'r')
+# orders_file = open('data-engineering-proj1/retail_db/orders/part-00000', 'r')
 # print(orders_file.read())
 # orders_str = orders_file.read()
 # orders = orders_str.splitlines()
@@ -124,7 +124,7 @@
 # print(type(order))
 import json
 
-file_path = 'data/retail_db/schemas.json'
+file_path = 'data-engineering-proj1/retail_db/schemas.json'
 
 # f_obj = open(file_path, 'r')
 # print(f_obj.read())

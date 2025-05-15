@@ -1,12 +1,13 @@
 import pandas as pd
 import json
+import glob
 
-# file_path = 'data-engineering-proj1/retail_db/schemas.json'
-# schemas = json.load(open(file_path, 'r'))
-# def get_column_names(schemas, ds_name, sorting_key = 'column_position'):
-#     column_details = schemas[ds_name]
-#     columns = sorted(column_details, key = lambda col: col[sorting_key])
-#     return [col['column_name'] for col in columns]
+file_path = 'data-engineering-proj1/retail_db/schemas.json'
+schemas = json.load(open(file_path, 'r'))
+def get_column_names(schemas, ds_name, sorting_key = 'column_position'):
+    column_details = schemas[ds_name]
+    columns = sorted(column_details, key = lambda col: col[sorting_key])
+    return [col['column_name'] for col in columns]
 
 # departments_col = get_column_names(schemas, 'departments', 'column_position')
 # categories_col = get_column_names(schemas, 'categories', 'column_position')
@@ -60,7 +61,7 @@ import json
 # os.makedirs('data/retail_db/orders_json/part-00000', exist_ok=True) 
 # orders.to_json('data/retail_db/orders_json/part-00000.json', orient='records', lines=True)
 
-import glob
+
 # file_path = glob.glob('Data-Engineering-proj1/retail_db/**', recursive=True)
 # file_path = glob.glob('Data-Engineering-proj1/retail_db/*/*', recursive=True)
 src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursive=True)
@@ -73,7 +74,7 @@ src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursiv
 #     print(f'Shape of {file_name} is {df.shape}')
 
 
-schemas = json.load(open('Data-Engineering-proj1/retail_db/schemas.json', 'r'))
+# schemas = json.load(open('Data-Engineering-proj1/retail_db/schemas.json', 'r'))
 # print(schemas)  
 
 
