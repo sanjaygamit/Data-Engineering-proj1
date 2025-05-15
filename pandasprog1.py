@@ -62,7 +62,8 @@ import json
 
 import glob
 file_path = glob.glob('Data-Engineering-proj1/retail_db/**', recursive=True)
-print(file_path)
+for file in file_path:
+    print(file)
 
 
 
