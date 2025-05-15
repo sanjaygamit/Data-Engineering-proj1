@@ -11,16 +11,16 @@ def get_column_names(schemas, ds_name, sorting_key = 'column_position'):
     return [col['column_name'] for col in columns]
 
 # departments_col = get_column_names(schemas, 'departments', 'column_position')
-categories_col = get_column_names(schemas, 'categories', 'column_position')
+# categories_col = get_column_names(schemas, 'categories', 'column_position')
 # orders_col = get_column_names(schemas, 'orders', 'column_position')
 # products_col = get_column_names(schemas, 'products', 'column_position')
-# customers_col = get_column_names(schemas, 'customers', 'column_position')
+customers_col = get_column_names(schemas, 'customers', 'column_position')
 # order_items_col = get_column_names(schemas, 'order_items', 'column_position')
 
 # print(order_items_col)
 
-categories = pd.read_csv('Data-Engineering-proj1/retail_db/categories/part-00000', header=None, names=categories_col)
-# customers = pd.read_csv('Data-Engineering-proj1/retail_db/customers/part-00000', header=None, names=customers_col)
+# categories = pd.read_csv('Data-Engineering-proj1/retail_db/categories/part-00000', header=None, names=categories_col)
+customers = pd.read_csv('Data-Engineering-proj1/retail_db/customers/part-00000', header=None, names=customers_col)
 # departments = pd.read_csv('Data-Engineering-proj1/retail_db/departments/part-00000', header=None, names=departments_col)
 # order_items = pd.read_csv('Data-Engineering-proj1/retail_db/order_items/part-00000', header=None, names=order_items_col)
 # orders = pd.read_csv('Data-Engineering-proj1/retail_db/orders/part-00000', header=None, names=orders_col)
@@ -34,7 +34,7 @@ categories = pd.read_csv('Data-Engineering-proj1/retail_db/categories/part-00000
 # print(orders.groupby(['orders_month','order_status'])['order_id'].agg(order_count='count'))
 
 # print(categories)
-# print(customers)
+print(customers)
 # print(departments)
 # print(order_items)
 # print(orders)
@@ -70,9 +70,9 @@ src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursiv
 #     print(re.split('/',file))
     # print(re.split('/'),file)
 
-datafilter = filter( lambda d1: d1.split('/')[2]=='customers', src_file_names)
+data_path_filter = filter( lambda d1: d1.split('/')[2]=='customers', src_file_names)
 # print(list(datafilter))
-df=pd.read_csv(list(datafilter)[0], header=None)
+df=pd.read_csv(list(data_path_filter)[0], header=None , names=customers_col)
 print(df.head(5))
 # for file_name in src_file_names:
 #     df = pd.read_csv(file_name, header=None)
