@@ -10,7 +10,7 @@ def get_column_names(schemas, ds_name, sorting_key = 'column_position'):
     return [col['column_name'] for col in columns]
 
 # departments_col = get_column_names(schemas, 'departments', 'column_position')
-# categories_col = get_column_names(schemas, 'categories', 'column_position')
+categories_col = get_column_names(schemas, 'categories', 'column_position')
 # orders_col = get_column_names(schemas, 'orders', 'column_position')
 # products_col = get_column_names(schemas, 'products', 'column_position')
 # customers_col = get_column_names(schemas, 'customers', 'column_position')
@@ -18,7 +18,7 @@ def get_column_names(schemas, ds_name, sorting_key = 'column_position'):
 
 # print(order_items_col)
 
-# categories = pd.read_csv('Data-Engineering-proj1/retail_db/categories/part-00000', header=None, names=categories_col)
+categories = pd.read_csv('Data-Engineering-proj1/retail_db/categories/part-00000', header=None, names=categories_col)
 # customers = pd.read_csv('Data-Engineering-proj1/retail_db/customers/part-00000', header=None, names=customers_col)
 # departments = pd.read_csv('Data-Engineering-proj1/retail_db/departments/part-00000', header=None, names=departments_col)
 # order_items = pd.read_csv('Data-Engineering-proj1/retail_db/order_items/part-00000', header=None, names=order_items_col)
@@ -64,7 +64,7 @@ def get_column_names(schemas, ds_name, sorting_key = 'column_position'):
 
 # file_path = glob.glob('Data-Engineering-proj1/retail_db/**', recursive=True)
 # file_path = glob.glob('Data-Engineering-proj1/retail_db/*/*', recursive=True)
-src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursive=True)
+# src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursive=True)
 # for file in src_file_names:
 #     print(file)
 
@@ -77,4 +77,6 @@ src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursiv
 # schemas = json.load(open('Data-Engineering-proj1/retail_db/schemas.json', 'r'))
 # print(schemas)  
 
+
+# filter(lambda order :order.split(',')[3]=='COMPLETE, orders)
 

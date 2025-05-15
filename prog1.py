@@ -165,19 +165,29 @@ schemas = json.load(open(file_path, 'r'))
 
 def get_column_names(schemas, ds_name, sorting_key = 'column_position'):
     column_details = schemas[ds_name]
+    print(column_details)
     columns = sorted(column_details, key = lambda col: col[sorting_key])
+    print(columns)
     return [col['column_name'] for col in columns]
 
-departments_col = get_column_names(schemas, 'departments', 'column_name')
-categories_col = get_column_names(schemas, 'categories', 'column_name')
-orders_col = get_column_names(schemas, 'orders', 'column_name')
-products_col = get_column_names(schemas, 'products', 'column_name')
-customers_col = get_column_names(schemas, 'customers', 'column_name')
-order_items_col = get_column_names(schemas, 'order_items', 'column_name')
+
+get_column_names(schemas, 'departments', 'column_name')
+
+# departments_col = get_column_names(schemas, 'departments', 'column_name')
+# categories_col = get_column_names(schemas, 'categories', 'column_name')
+# orders_col = get_column_names(schemas, 'orders', 'column_name')
+# products_col = get_column_names(schemas, 'products', 'column_name')
+# customers_col = get_column_names(schemas, 'customers', 'column_name')
+# order_items_col = get_column_names(schemas, 'order_items', 'column_name')
 
 
-print(order_items_col)
+# print(order_items_col)
 
 # https://github.com/sanjaygamit/Data-Engineering-proj1.git
 
 ##
+
+# l = [1,2,3,4]  # [1,3,6,10]
+# print(list(map(lambda n : (n*(n+1))/2, l)))
+
+
