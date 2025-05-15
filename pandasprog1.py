@@ -68,9 +68,9 @@ for file in src_file_names:
     print(file)
 
 
-# for file_name in src_file_names:
-#     df = pd.read_csv(file_name, header=None)
-#     print(f'Shape of {file_name} is {df.shape}')
+for file_name in src_file_names:
+    df = pd.read_csv(file_name, header=None)
+    print(f'Shape of {file_name} is {df.shape}')
 
 
 
