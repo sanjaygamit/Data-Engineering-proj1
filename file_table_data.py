@@ -13,7 +13,7 @@ def get_column_names(schemas, ds_name, sorting_key = 'column_position'):
 
 def get_file_data(ds_name):
     src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursive=True)
-    data_path_filter = filter( lambda d1: d1.split('/')[2]==ds_name, src_file_names)
+    data_path_filter = filter( lambda d1: d1.split('/')[-2]==ds_name, src_file_names)
     customers_col = get_column_names(schemas, ds_name, 'column_position')
     df=pd.read_csv(list(data_path_filter)[0], header=None , names=customers_col)
     print(df.head(5))
@@ -24,6 +24,6 @@ def get_file_data(ds_name):
 # get_file_data('categories') 
 # get_file_data('orders')
 # get_file_data('products')
-# get_file_data('customers')
+get_file_data('customers')
 # get_file_data('order_items')
 
