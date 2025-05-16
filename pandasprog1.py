@@ -66,15 +66,18 @@ customers = pd.read_csv('Data-Engineering-proj1/retail_db/customers/part-00000',
 # file_path = glob.glob('Data-Engineering-proj1/retail_db/**', recursive=True)
 # file_path = glob.glob('Data-Engineering-proj1/retail_db/*/*', recursive=True)
 src_file_names = glob.glob('Data-Engineering-proj1/retail_db/*/part-*', recursive=True)
+# print([file for file in src_file_names])
+# print(src_file_names)
 # for file in src_file_names:
 #     print(re.split('/',file))
     # print(re.split('/'),file)
 
+
 data_path_filter = filter( lambda d1: d1.split('/')[2]=='customers', src_file_names)
-# print(list(data_path_filter))
+print(type(data_path_filter))
 df=pd.read_csv(list(data_path_filter)[0], header=None , names=customers_col)
 print(df.head(5))
-# for file_name in src_file_names:
+# for file_name in src_file_names: 
 #     df = pd.read_csv(file_name, header=None)
 #     # print(f'Shape of {file_name} is {df.shape}')
 #     print(df.head(5))
