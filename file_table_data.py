@@ -16,14 +16,15 @@ def get_file_data(ds_name):
     data_path_filter = filter( lambda d1: d1.split('/')[-2]==ds_name, src_file_names)
     customers_col = get_column_names(schemas, ds_name, 'column_position')
     df=pd.read_csv(list(data_path_filter)[0], header=None , names=customers_col)
-    print(df.head(5))
+    return df
 
 
 
-# get_file_data('departments')
-# get_file_data('categories') 
-# get_file_data('orders')
-# get_file_data('products')
-get_file_data('customers')
-# get_file_data('order_items')
+df_dept = get_file_data('departments')
+df_cate = get_file_data('categories') 
+df_ord = get_file_data('orders')
+df_prod = get_file_data('products')
+df_cust = get_file_data('customers')
+df_item = get_file_data('order_items')
 
+print (df_ord.head(5))
