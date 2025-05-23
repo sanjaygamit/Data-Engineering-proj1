@@ -1,4 +1,4 @@
-# import os
+import os
 # orders_file = open('data-engineering-proj1/retail_db/orders/part-00000', 'r')
 # print(orders_file.read())
 # orders_str = orders_file.read()
@@ -122,16 +122,16 @@
 
 # order = json.loads(order_jd)['order_id']
 # print(type(order))
-import json
+# import json
 
-file_path = 'data-engineering-proj1/retail_db/schemas.json'
+# file_path = 'data-engineering-proj1/retail_db/schemas.json'
 
 # f_obj = open(file_path, 'r')
 # print(f_obj.read())
 # f_obj.close()
 # f_obj = open(file_path, 'r')
 
-schemas = json.load(open(file_path, 'r'))
+# schemas = json.load(open(file_path, 'r'))
 # print(schemas)
 # print(type(schemas))
 # schemas.close()
@@ -163,15 +163,15 @@ schemas = json.load(open(file_path, 'r'))
 # print(sorted(column_details, key = lambda col: col[sorting_key]))
 
 
-def get_column_names(schemas, ds_name, sorting_key = 'column_position'):
-    column_details = schemas[ds_name]
-    print(column_details)
-    columns = sorted(column_details, key = lambda col: col[sorting_key])
-    print(columns)
-    return [col['column_name'] for col in columns]
+# def get_column_names(schemas, ds_name, sorting_key = 'column_position'):
+#     column_details = schemas[ds_name]
+#     print(column_details)
+#     columns = sorted(column_details, key = lambda col: col[sorting_key])
+#     print(columns)
+#     return [col['column_name'] for col in columns]
 
 
-get_column_names(schemas, 'departments', 'column_name')
+# get_column_names(schemas, 'departments', 'column_name')
 
 # departments_col = get_column_names(schemas, 'departments', 'column_name')
 # categories_col = get_column_names(schemas, 'categories', 'column_name')
