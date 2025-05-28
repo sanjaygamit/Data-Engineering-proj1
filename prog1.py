@@ -191,3 +191,9 @@ import os
 # print(list(map(lambda n : (n*(n+1))/2, l)))
 
 
+# df1 = df.select(spark_partition_id().alias('partid').groupBy('partid').count()
+#display(df1)
+
+
+# df.dropDuplicate()
+
