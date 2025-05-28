@@ -3,6 +3,8 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, sum as _sum, desc # Alias sum to avoid conflict
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
 
+from pyspark.sql.functions import * 
+from pyspark.sql.window import Window
 # Configuration
 SCHEMA_FILE_PATH = 'data-engineering-proj1/retail_db/schemas.json'
 # For Databricks, you might use DBFS paths, e.g., "/dbfs/mnt/your_data/retail_db"
@@ -129,6 +131,13 @@ def main():
     # Stop the SparkSession
     print("\nStopping SparkSession.")
     spark.stop()
+
+
+    ## consecutive orders by customer 
+
+    
+
+
 
 if __name__ == "__main__":
     main()
