@@ -22,12 +22,8 @@ window_spec = Window.partitionBy("Customer_id").orderBy("order_date")
 # Use lag to get the previous order date
 
 df_lag = df.withColumn("prev_order_date", lag("order_date").over(window_spec))
-
 # df_lag.show()
-
 df_diff = df_lag.withColumn("data_diff",datediff("order_date","prev_order_date"))
 # df_diff.show()
-
 consecutive_orders = df_diff.filter(col("data_diff") == 1)
-
 consecutive_orders.show()
