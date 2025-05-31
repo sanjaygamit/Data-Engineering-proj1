@@ -27,17 +27,17 @@ import os
 # print(sum_l(n))
 # print([sum_l(n) for n in range(n)])
 ############ fibonacci series #############
-# def fibonaci(i):
-#     if i == 0:
-#         return 0 
-#     elif i == 1:
-#         return 1
-#     else: 
-#         return fibonaci(i-1)+fibonaci(i-2)
+def fibonaci(i):
+    if i == 0:
+        return 0 
+    elif i == 1:
+        return 1
+    else: 
+        return fibonaci(i-1)+fibonaci(i-2)
 
-# n = int(input("Enter the number of terms: "))
-# for x in range(n):
-#     print(fibonaci(x))   
+n = int(input("Enter the number of terms: "))
+for x in range(n):
+    print(fibonaci(x))   
 
 ######## find out common letters ##########
 
