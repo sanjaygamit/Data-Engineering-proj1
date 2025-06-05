@@ -13,7 +13,20 @@ import os
 # print(orders_list.sort())
 # print(len(orders_list))
 
-# l = [1,2,3,4]  # [1,3,6,10]
+# 1. 
+#--------------------------------------#
+# Palindrome in Python 
+
+# s = input ("Enter a string: ")
+# def is_palindrome(s):
+#    return s == s[::-1]    
+# print(is_palindrome(s))
+#--------------------------------------#
+
+# 2. 
+#--------------------------------------#
+# Write a Python program to find the sum of first n natural numbers.
+# # l = [1,2,3,4]  # [1,3,6,10]
 # n = int(input("Enter a number: "))  
 
 # def sum_d(n):
@@ -25,20 +38,40 @@ import os
 # sum_l = lambda n : (n * (n+1))/2 
 
 # print(sum_l(n))
-# print([sum_l(n) for n in range(n)])
-############ fibonacci series #############
-def fibonaci(i):
-    if i == 0:
-        return 0 
-    elif i == 1:
-        return 1
-    else: 
-        return fibonaci(i-1)+fibonaci(i-2)
+# print([sum_l(n) for n in range(n+1)])
+#--------------------------------------#
 
-n = int(input("Enter the number of terms: "))
-for x in range(n):
-    print(fibonaci(x))   
+# 3. 
+#--------------------------------------#
+# Write a Python program to find the factorial of a number.
+# n = int(input("Enter a number: "))
+# def factorial(n):
+#     if n == 0 or n == 1:
+#         return 1
+#     else:
+#         return n * factorial(n - 1)
+# print(factorial(n))
+#--------------------------------------#
 
+# 4.    
+#--------------------------------------#
+############ fibonacci series using recursion #############
+# def fibonaci(i):
+#     if i == 0:
+#         return 0 
+#     elif i == 1:
+#         return 1
+#     else: 
+#         return fibonaci(i-1)+fibonaci(i-2)
+
+# n = int(input("Enter the number of terms: "))
+# for x in range(n):
+#     print(fibonaci(x))   
+#--------------------------------------#
+
+# 5.
+#--------------------------------------#
+# Write a Python program to find out common letters between two strings.
 ######## find out common letters ##########
 
 # def common_letters():
@@ -46,8 +79,9 @@ for x in range(n):
 #     str2 = input("Enter second string: ")
 #     common = set(str1) & set(str2)
 #     print("Common letters are: ", common)
-
 # common_letters()
+#--------------------------------------#
+
 ### common letters in strings ######
 # def common_letters():
 #     a = input("Enter first string:")
@@ -55,12 +89,16 @@ for x in range(n):
 #     c = set(a) & set(b)    
 # common_letters()
 
+
+# 6.
+#--------------------------------------#
 # Write a python program to Count the frequency of words appearing a string. 
 
 # Sheena loves eating apple and mango. Her sister also loves eating apple and mango. 
 # def count_frequency():
 #     str = input("Enter a string: ")
 #     li = str.split()
+#     print(li)
 #     d = {}
 #     for i in li:
 #         if i not in d.keys():
@@ -69,10 +107,12 @@ for x in range(n):
 #     print(d)        
 
 # count_frequency()
+#--------------------------------------#
 
 
+# 7.
+#--------------------------------------#
 # write a python program to convert two lists into a dictionary. 
-
 # def list_to_dict():
 #     keys = [1,2,3]
 #     values = ["one", "two", "three"]
@@ -80,28 +120,34 @@ for x in range(n):
 #     print(result)
 
 # list_to_dict()    
+#--------------------------------------#
 
+# 8.
+#--------------------------------------#
 # def dict_to_touple():
 #     d = {1: 'one', 2: 'two', 3: 'three'}
 #     for x in d.items():
 #         print(x)
 
 # dict_to_touple()
+#--------------------------------------#
 
-# orders = ['1,2013-07-25 00:00:00.0,11599,CLOSED',
-# '2,2013-07-25 00:00:00.0,256,PENDING_PAYMENT',
-# '3,2013-07-25 00:00:00.0,12111,COMPLETE',
-# '4,2013-07-25 00:00:00.0,8827,CLOSED',
-# '5,2013-07-25 00:00:00.0,11318,COMPLETE',
-# '6,2013-07-25 00:00:00.0,7130,COMPLETE',
-# '7,2013-07-25 00:00:00.0,4530,COMPLETE',
-# '8,2013-07-25 00:00:00.0,2911,PROCESSING',
-# '9,2013-07-25 00:00:00.0,5657,PENDING_PAYMENT',
-# '10,2013-07-25 00:00:00.0,5648,PENDING_PAYMENT']
+orders = ['1,2013-07-25 00:00:00.0,11599,CLOSED',
+'2,2013-07-25 00:00:00.0,256,PENDING_PAYMENT',
+'3,2013-07-25 00:00:00.0,12111,COMPLETE',
+'4,2013-07-25 00:00:00.0,8827,CLOSED',
+'5,2013-07-25 00:00:00.0,11318,COMPLETE',
+'6,2013-07-25 00:00:00.0,7130,COMPLETE',
+'7,2013-07-25 00:00:00.0,4530,COMPLETE',
+'8,2013-07-25 00:00:00.0,2911,PROCESSING',
+'9,2013-07-25 00:00:00.0,5657,PENDING_PAYMENT',
+'10,2013-07-25 00:00:00.0,5648,PENDING_PAYMENT']
 
 
-# print(orders)  
-# order = orders[0]
+print(orders)  
+order = orders[0]
+print(order)
+print(order.split(',')[0])
 # print(order.split(',')[0] + ' ' + order.split(',')[1] + ' ' + order.split(',')[2] + ' ' + order.split(',')[3]) 
 
 # print(orders)
