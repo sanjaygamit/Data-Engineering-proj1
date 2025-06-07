@@ -136,3 +136,8 @@ Select mon1 “Month”,Catefgory, Name,
 sum(month_sum_data)over();
 
 ;
+
+1. different stages in snowflake. : https://www.youtube.com/watch?v=reWO0qqnpN0
+2. different type of table in snowflake.
+3. Different type of views in snowflake.
+4. How you will implement pipepine in snowflake.
