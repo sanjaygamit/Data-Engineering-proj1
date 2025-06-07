@@ -1,4 +1,36 @@
 
+Team_Name
+1 India
+2 Pakistan
+3 Australia
+4 Afghanistan
+
+Team Opponent_Team
+Australia | Afghanistan
+India     | Afghanistan
+Pakistan  | Afghanistan
+India     | Australia
+Pakistan  | Australia
+Pakistan  | India
+
+select t1.team team, t2.team Opponent_team 
+from team t1 cross join team t2
+where t1.team < t2.team
+
+or 
+
+with ds as (select team_name, 
+row_number() over(order by team_name) as teamid 
+from team)
+
+select t1.team_name team, t2.team_name Opponent_team
+from ds t1 cross join ds t2
+where t1.teamid < t2.teamid; ß
+
+
+
+
+
 #-------------------------------------------------#
 1.  Three consecutive days where cnt exceeds 100
 with ds as (
@@ -68,4 +100,39 @@ select cd, count(*) from ds groi by cd order by cd;
 
 
 #-------------------------------------------------# 
-7. 
+7.Oracle SQL to compute group number for repeating number 
+
+with ds as (select  
+            --nvl(lag(c2,1) over(order by c1),0) r, 
+            case when c2 <> nvl(lag(c2,1) over(order by c1),0)
+            then 1 else 0 end r 
+            from t)
+           select c1,c2,r,sum 
+           c1,c2,sum(r) over(order by c1) from ds ; 
+
+#-------------------------------------------------#
+
+#-------------------------------------------------#
+8. Write a query to complete the start and end of group in the given missing sequence of numbers. 
+select c, rownum, c-rownum as r 
+from t; 
+
+select min(c), max(c), c-rownum 
+from t 
+group by c-rownum 
+order by 1; 
+
+
+(select start_range, end_range from t1) t1, 
+(select rownum r from dual connect by level <= (select max(end_range) from t1)t2)
+where  t2.r >= t1.start_range and t2.r <= t1.end_range
+-----  t2.r between t1.start_range and  t1.end_range
+; 
+
+select start_range, end_range, 
+    r-1, 
+    start_range + r-1 
+from t, 
+lateral(select rownum r from dual connect by level <= end_range - start_range + 1) ;     
+
+
