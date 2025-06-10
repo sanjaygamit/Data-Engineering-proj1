@@ -12,7 +12,28 @@ def process_files(ds_names = None):
         print(f'Processing dataset: {ds_name}')
     
 
+# find the pairs with given sum value of an array. 
 
+def find_pairs_of_sum(l,target_sum):
+    l.sort()
+    left = 0
+    right = len(l) - 1
+    while (left <= right):
+        if (l[left] + l[right] > target_sum):
+            right -= 1
+        elif (l[left] + l[right] < target_sum):
+            left +=1
+        elif (l[left] + l[right] == target_sum):
+            print("Values of pair are", l[left], "&", l[right])
+            right -= 1
+            left += 1
+
+
+l = [5, 7, 4, 3, 9, 8, 19, 21,18,22]
+target_sum = 40
+find_pairs_of_sum(l, target_sum)                    
+        
+    
 
 
 	 
