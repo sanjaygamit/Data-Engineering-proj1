@@ -136,3 +136,46 @@ from t,
 lateral(select rownum r from dual connect by level <= end_range - start_range + 1) ;     
 
 
+#-------------------------------------------------#
+9. Write a query to split the data into multiple groups. 
+
+with ds as (
+select sno,sname,NTILE(3) over(order by sno) grp from t
+
+)
+select 
+    grp,
+    null sno, 
+    null sname, 
+    MIN(sno) min_sno, 
+    MAX(sno) max_sno,
+from ds
+group by grp 
+UNION ALL 
+select 
+    grp, 
+    sno, 
+    sname, 
+    null, 
+    null
+from ds
+order by grp, sno, nulls last;     
+#-------------------------------------------------#
+
+
+ #-------------------------------------------------#
+ 10. Write a SQL to check whether two strings are "anagram" of each other. 
+ 
+ "ANAGRAM" An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. 
+ Ex : HEART ==> EARTH
+ 
+ select sno, s1, s2, greatest(LENGTH(S1), LENGTH(S2)), l
+ substr(s1,l,1) c1, 
+ substr(s2,l,1) c2, 
+ listagg(substr(s1,l,1)) within group (order by substr(s1,l,1)) str1,
+  listagg(substr(s1,l,1)) within group (order by substr(s1,l,1)) str2, 
+  case when listagg(substr(s1,l,1)) within group (order by substr(s1,l,1)) = 
+         listagg(substr(s2,l,1)) within group (order by substr(s2,l,1)) 
+      then 'ANAGRAM' else 'NOT ANAGRAM' end anagram
+ from t
+ lateral(select level l from dual connect by level <= greatest(length(s1), length(s2))); 
