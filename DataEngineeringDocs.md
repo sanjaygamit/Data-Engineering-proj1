@@ -141,3 +141,22 @@ sum(month_sum_data)over();
 2. different type of table in snowflake.
 3. Different type of views in snowflake.
 4. How you will implement pipepine in snowflake.
+
+######################################## SnowFlake ################################################
+
+- https://www.youtube.com/watch?v=4JYirMYRQC8
+- https://www.youtube.com/watch?v=Ir-8g7TQbcU
+  Q What is snowflake.
+  Snowflake is a cloud data warehouseing solution.
+  Snowflake enables data storage, processing and analytic solutions that are faster, easier to use, and far more flexible than traditional offerings.
+  Q Is snowflake available on premises ?
+
+  - No, Snowflake data warehouse is a true Saas offering which can be hosted only on public cloud like aws, azure or gcp.
+
+  Q What are the three key layers on snowflake architecture?
+
+  - Database
+  - Query processing(Compute)
+  - Cloud Services
+
+######################################## SnowFlakeEnd ################################################
