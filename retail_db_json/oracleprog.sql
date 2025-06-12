@@ -64,7 +64,15 @@ product_id, Month_number, Sales_qty, pre_month_qty, Sales_qty  pre_month_qty as 
 #-------------------------------------------------#
 1. Find the active transaction for each user with transaction start and end time for each individual transaction. 
 
+with ds as (select 
+Transaction_date as Transaction_start_time,
+coalesce(dateadd(second,-1,lead(transaction_date,over(partition by user_id order by transaction_date))),'9999-12-12 23:59:59') as Transaction_end_time 
+from 
+transaction)
 
+select 
+case when Transaction_end_time = '9999-12-12 23:59:59' then 'Active' 
+else 'Inactive' end as IsActiveTransaction; 
 
 #-------------------------------------------------#
 
