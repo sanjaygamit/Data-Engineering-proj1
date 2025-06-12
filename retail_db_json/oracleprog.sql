@@ -59,10 +59,14 @@ Find the change in sales qty w.r.t prev month sales for each product.
 product_id, Month_number, Sales_qty, pre_month_qty, Sales_qty  pre_month_qty as diff_qty
  from ds ; 
  
+#-------------------------------------------------#
+
+#-------------------------------------------------#
+1. Find the active transaction for each user with transaction start and end time for each individual transaction. 
+
 
 
 #-------------------------------------------------#
-
 
 #-------------------------------------------------#
 
