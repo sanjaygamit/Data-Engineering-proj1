@@ -133,13 +133,14 @@ EmpId | Start_date | End_date | Attendance
 
 Query : 
 
-with ds as ()
-select empid, 
-row_number() over(partition by empid, attendance order by date_value) as rn, 
+with ds as (
+            select empid, 
+            row_number() over(partition by empid, attendance order by date_value) as rn, 
 
-dateadd(day,-1*(row_number()over(partition by empid, attendance order by date_Value)),date_value) base_date
-from 
-attendancelog)
+            dateadd(day,-1*(row_number()over(partition by empid, attendance order by date_Value)),date_value) base_date
+            from 
+            attendancelog
+            )
 
 select empid,min(date_value) as start_date , max(date_value) as end_date, attendance 
 from ds 
