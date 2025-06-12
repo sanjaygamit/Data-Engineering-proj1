@@ -27,8 +27,24 @@ select t1.team_name team, t2.team_name Opponent_team
 from ds t1 cross join ds t2
 where t1.teamid < t2.teamid; 
 
+#-------------------------------------------------#
+1. Find the ranking of student in each department such that   
+    a) Marks should be in descending order 
+    b) Gap in ranks. 
 
+   Logic for 6th column 
+    a) Marks should be in descending order 
+    b) Find the ranking of student in each department such that there should be no gap between 2 ranks. 
 
+    select 
+        rank() over(partition by dept order by marks asc) as Rnk, 
+        dense_rank() over(partition by dept order by marks desc) d_rank   
+    from class; 
+
+  https://www.youtube.com/watch?v=FiuvGT_ACSA&list=PLP1_hACWUYHxV0r2alS0i_H7oLOH5DXh3&index=2 
+  
+
+#-------------------------------------------------#
 
 
 #-------------------------------------------------#
