@@ -153,6 +153,33 @@ order by empid,base_date
 -- Forward filling in  SQL is a technique used to fill in missing values in a dataset by carrying forward the last known value. This is particularly useful in time series data or datasets where values may be missing for certain periods.
 
 
+collageid | studentid | Deptid 
+1         | 1         | 101
+1         | 2         | null
+1         | 3         | null
+1         | 4         | null
+1         | 11        | 201
+1         | 12        | null
+1         | 13        | null
+1         | 14        | null
+
+output 
+collageid | studentid | Deptid 
+1         | 1         | 101
+1         | 2         | 101
+1         | 3         | 101
+1         | 4         | 101
+1         | 11        | 201
+1         | 12        | 201
+1         | 13        | 201
+1         | 14        | 201
+
+
+
+select 
+
+from 
+studentDetails
 
 
 #-------------------------------------------------#
