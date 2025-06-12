@@ -176,11 +176,13 @@ collageid | studentid | Deptid
 
 
 
-select 
-
-from 
-studentDetails
-
+ds as  (select collageid, studentid, deptid,
+        count(deptid) over(order by studentid) as cnt_deptid 
+        
+        from 
+        studentDetails)
+select FIRST_VALUE(deptid) over(partition by cnt_deptid order by studentid) as new_deptid
+from ds;
 
 #-------------------------------------------------#
 
