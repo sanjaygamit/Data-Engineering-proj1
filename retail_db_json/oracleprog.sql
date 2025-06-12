@@ -62,7 +62,7 @@ product_id, Month_number, Sales_qty, pre_month_qty, Sales_qty  pre_month_qty as 
 #-------------------------------------------------#
 
 #-------------------------------------------------#
-1. Find the active transaction for each user with transaction start and end time for each individual transaction. 
+-- 1. Find the active transaction for each user with transaction start and end time for each individual transaction. 
 
 with ds as (select 
 Transaction_date as Transaction_start_time,
@@ -80,7 +80,7 @@ else 'Inactive' end as IsActiveTransaction;
 Find the running sum of order price for every customer. 
 
 
-"running sum"  is the cumulative total of a sequence of numbers, where each new number is added to the total of all previous numbers in the sequence.
+-- "running sum"  is the cumulative total of a sequence of numbers, where each new number is added to the total of all previous numbers in the sequence.
 
 with ds as (select (qty*price) as TotalPrice
 from customer_order)
@@ -98,6 +98,36 @@ sum(TotalPrice) over(Partition by customer_id oder by ItemId ROWS BETWEEN  CURRE
 from ds; 
 
 #-------------------------------------------------#
+
+#-------------------------------------------------#
+-- From given item price table find the first month and last month price for each item to analyse the varification of price. 
+
+select 
+FIRST_VALUE(PRICE) OVER(PARTITION BY ITEMID ORDER BY MONTHNO) AS FirstMonthPrice,
+LAST_VALUE(PRICE) OVER(PARTITION BY ITEMID ORDER BY MONTHNO
+ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS LastMonthPrice
+from 
+price_table;
+
+
+#-------------------------------------------------#
+
+#-------------------------------------------------#
+From the given attendanceLog input table, write a sql query to get the output as shown below. 
+EmpId | Date_Value | Attendance 
+1    | 2023-01-01 | Present
+1    | 2023-01-02 | Present
+1    | 2023-01-03 | Absent
+2    | 2023-01-01 | Present     
+2    | 2023-01-02 | Absent
+2    | 2023-01-03 | Present
+
+
+
+
+
+#-------------------------------------------------#
+
 
 
 #-------------------------------------------------#
