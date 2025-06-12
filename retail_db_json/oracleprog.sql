@@ -49,12 +49,16 @@ where t1.teamid < t2.teamid;
  https://www.youtube.com/watch?v=_pc04NUzsg4&list=PLP1_hACWUYHxV0r2alS0i_H7oLOH5DXh3&index=3
 Find the change in sales qty w.r.t prev month sales for each product.
 
- select 
+ with ds as (select 
     product_id,
     Month_number,
  lag(sales_qty,1,sales_qty) over(partition by product_id order by Month_number) pre_month_qty, 
     sales_qty
- from sales; 
+ from sales)
+ select 
+product_id, Month_number, Sales_qty, pre_month_qty, Sales_qty  pre_month_qty as diff_qty
+ from ds ; 
+ 
 
 
 #-------------------------------------------------#
