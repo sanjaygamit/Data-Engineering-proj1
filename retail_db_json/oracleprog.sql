@@ -77,6 +77,16 @@ else 'Inactive' end as IsActiveTransaction;
 #-------------------------------------------------#
 
 #-------------------------------------------------#
+Find the running sum of order price for every customer. 
+
+"running sum"  is the cumulative total of a sequence of numbers, where each new number is added to the total of all previous numbers in the sequence.
+
+
+
+#-------------------------------------------------#
+
+
+#-------------------------------------------------#
 
 1.  Three consecutive days where cnt exceeds 100
 with ds as (
