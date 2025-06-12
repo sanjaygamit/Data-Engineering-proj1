@@ -179,3 +179,20 @@ order by grp, sno, nulls last;
       then 'ANAGRAM' else 'NOT ANAGRAM' end anagram
  from t
  lateral(select level l from dual connect by level <= greatest(length(s1), length(s2))); 
+
+
+select 
+-- greatest(length(s1),length(s2)), 
+-- substr(s1,l,1) c1, 
+-- substr(s2,l,1) c2,
+listagg(substr(s1,l,1)) within group (order by substr(s1,l,1)) =  listagg(substr(s2,l,1)) within group (order by substr(s2,l,1)) then 'ANAGRAM' else 'NOT ANAGRAM' end anagram
+from t 
+lateral(select level l from dual connect by level <= greatest(length(s1),length(s2))); 
+#-------------------------------------------------#
+
+
+#-------------------------------------------------#
+11. Write a SQL to transform data as given below. 
+    -  Tax rate is considered  "added" if no rate existed a day before the current activation data. 
+    - Tax rate is considered "Modified" if the rate has changed as compared to previous date. 
+    - Tax rate is considered "Removed" if no rate on the immediate next date. 
