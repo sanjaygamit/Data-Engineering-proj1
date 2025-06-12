@@ -42,12 +42,26 @@ where t1.teamid < t2.teamid;
     from class; 
 
   https://www.youtube.com/watch?v=FiuvGT_ACSA&list=PLP1_hACWUYHxV0r2alS0i_H7oLOH5DXh3&index=2 
-  
+
+#-------------------------------------------------#
+
+#-------------------------------------------------#
+ https://www.youtube.com/watch?v=_pc04NUzsg4&list=PLP1_hACWUYHxV0r2alS0i_H7oLOH5DXh3&index=3
+Find the change in sales qty w.r.t prev month sales for each product.
+
+ select 
+    product_id,
+    Month_number,
+ lag(sales_qty,1,sales_qty) over(partition by product_id order by Month_number) pre_month_qty, 
+    sales_qty
+ from sales; 
+
 
 #-------------------------------------------------#
 
 
 #-------------------------------------------------#
+
 1.  Three consecutive days where cnt exceeds 100
 with ds as (
 select  
