@@ -114,6 +114,7 @@ price_table;
 
 #-------------------------------------------------#
 From the given attendanceLog input table, write a sql query to get the output as shown below. 
+Data
 EmpId | Date_Value | Attendance 
 1    | 2023-01-01 | Present
 1    | 2023-01-02 | Present
@@ -121,6 +122,31 @@ EmpId | Date_Value | Attendance
 2    | 2023-01-01 | Present     
 2    | 2023-01-02 | Absent
 2    | 2023-01-03 | Present
+
+output 
+EmpId | Start_date | End_date | Attendance
+1     | 2023-01-01 | 2023-01-03 | Present
+1     | 2023-01-03 | 2023-01-03 | Absent
+1     | 2023-01-03 | 2023-01-03 | Present
+2     | 2023-01-01 | 2023-01-02 | Present
+2     | 2023-01-02 | 2023-01-02 | Absent
+
+Query : 
+
+with ds as ()
+select empid, 
+row_number() over(partition by empid, attendance order by date_value) as rn, 
+
+dateadd(day,-1*(row_number()over(partition by empid, attendance order by date_Value)),date_value) base_date
+from 
+attendancelog)
+
+select empid,min(date_value) as start_date , max(date_value) as end_date, attendance 
+from ds 
+group by empid, base_date,attendance
+order by empid,base_date
+; 
+
 
 
 
