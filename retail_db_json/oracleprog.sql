@@ -79,9 +79,23 @@ else 'Inactive' end as IsActiveTransaction;
 #-------------------------------------------------#
 Find the running sum of order price for every customer. 
 
+
 "running sum"  is the cumulative total of a sequence of numbers, where each new number is added to the total of all previous numbers in the sequence.
 
+with ds as (select (qty*price) as TotalPrice
+from customer_order)
+select 
+sum(TotalPrice) over(Partition by customer_id oder by ItemId) as RunningPrice,
 
+sum(TotalPrice) over(Partition by customer_id oder by ItemId ROWS UNBOUNDED PRECEDING) as RunningPrice,  
+-- DEFAULT  "ROWS UNBOUNDED PRECEDING"
+
+sum(TotalPrice) over(Partition by customer_id oder by ItemId ROWS 1 PRECEDING) as RunningPrice1ROWPRECEDING,
+
+sum(TotalPrice) over(Partition by customer_id oder by ItemId ROWS BETWEEN  CURRENT ROW AND 1 FOLLOWING ) as RunningPricFollowing
+
+
+from ds; 
 
 #-------------------------------------------------#
 
