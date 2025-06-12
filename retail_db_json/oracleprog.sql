@@ -41,12 +41,12 @@ where t1.teamid < t2.teamid;
         dense_rank() over(partition by dept order by marks desc) d_rank   
     from class; 
 
-  https://www.youtube.com/watch?v=FiuvGT_ACSA&list=PLP1_hACWUYHxV0r2alS0i_H7oLOH5DXh3&index=2 
+ 
 
 #-------------------------------------------------#
 
 #-------------------------------------------------#
- https://www.youtube.com/watch?v=_pc04NUzsg4&list=PLP1_hACWUYHxV0r2alS0i_H7oLOH5DXh3&index=3
+ 
 Find the change in sales qty w.r.t prev month sales for each product.
 
  with ds as (select 
