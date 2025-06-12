@@ -25,7 +25,7 @@ from team)
 
 select t1.team_name team, t2.team_name Opponent_team
 from ds t1 cross join ds t2
-where t1.teamid < t2.teamid; ß
+where t1.teamid < t2.teamid; 
 
 
 
