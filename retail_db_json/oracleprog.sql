@@ -147,15 +147,15 @@ from ds
 group by empid, base_date,attendance
 order by empid,base_date
 ; 
+#-------------------------------------------------#
 
-
+#-------------------------------------------------#
+-- Forward filling in  SQL is a technique used to fill in missing values in a dataset by carrying forward the last known value. This is particularly useful in time series data or datasets where values may be missing for certain periods.
 
 
 
 
 #-------------------------------------------------#
-
-
 
 #-------------------------------------------------#
 
