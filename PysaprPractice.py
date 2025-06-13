@@ -24,3 +24,15 @@ from pyspark.sql.types import StructType, StructField, StringType, IntegerType, 
 # Julie | Carroms
 
 
+data = [('Alice', 'Badminton, Tennis'),
+        ('Bob', 'Tennis, Cricket'),
+        ('Julie', 'Cricket, Carroms')]
+columns = ['Name','Hobbies']
+spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
+df = spark.createDataFrame(data,columns)
+df.show()
+
+
+
+
+
