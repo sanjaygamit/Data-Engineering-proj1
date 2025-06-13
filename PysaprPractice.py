@@ -4,6 +4,8 @@ from pyspark.sql.functions import *
 from pyspark.sql.functions import col, sum as _sum, desc # Alias sum to avoid conflict
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
 from pyspark.sql.functions import explode, split
+from pyspark.sql.window import *
+
 
 
 # Write a pyspark query  using below input to get below output.
@@ -118,5 +120,12 @@ data1 = [(1,"A",1000,"IT"), (1,"B",1500,"IT"), (3,"C",2500,"IT"), (4,"D",3000,"H
 schema1 = ["EmpId", "EmpName", "Salary", "Department"]
 
 df = spark.createDataFrame(data1,schema1)
-df.show()
+# df.show()
 
+df_rank = df.select('*',
+                    dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())).alias('Rank'))
+
+df_rank.show()
+
+# df_rank = df.select('*',
+#                     dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())))
