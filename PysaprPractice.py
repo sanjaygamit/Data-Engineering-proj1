@@ -1,9 +1,10 @@
 import json
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import * 
 from pyspark.sql.functions import col, sum as _sum, desc # Alias sum to avoid conflict
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
 from pyspark.sql.functions import explode, split
-from pyspark.sql.functions import * 
+
 
 # Write a pyspark query  using below input to get below output.
 
@@ -95,4 +96,11 @@ spark = SparkSession.builder.appName("student_marks").getOrCreate()
 df1 = spark.createDataFrame(data1, schema1)
 df2 = spark.createDataFrame(data2, schema2)
 
-df2.show()
+# df1.show()
+# df2.show()
+
+df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id)
+
+# df_join.show()
+df_per = df_join.groupBy('id','name').agg(sum('marks').alias('total_marks'))
+df_per.show()
