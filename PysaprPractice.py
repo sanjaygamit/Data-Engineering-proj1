@@ -147,7 +147,11 @@ df_dept = spark.createDataFrame(data2,schema2)
 # df_dept.show()
 
 df = df_salary.withColumn('newsaldt',to_date('SalaryDate',"dd-mm-yy"))
-df.show()
+# df.show()
+
+df1 = df.join(df_dept,df.DeptId == df_dept.DeptId, how = 'inner').drop(df_dept.DeptId)
+# df1 = df.join(df_dept,['DeptId'])
+df1.show()
 
 
 
