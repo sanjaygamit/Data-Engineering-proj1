@@ -113,17 +113,17 @@ from pyspark.sql.window import *
 #               .otherwise('D').alias('Grade')).show()
 
 
-spark = SparkSession.builder.appName("Nthhighest_salary").getOrCreate()
+# spark = SparkSession.builder.appName("Nthhighest_salary").getOrCreate()
 
-data1 = [(1,"A",1000,"IT"), (1,"B",1500,"IT"), (3,"C",2500,"IT"), (4,"D",3000,"HR"), (5,"E",2000,"HR"), (6,"F",1000,"HR"), (7,"G",4000,"SALES"), (8,"H",4000,"SALES"), (9,"I",1000,"SALES"), (10,"J",2000,"SALES")]
+# data1 = [(1,"A",1000,"IT"), (1,"B",1500,"IT"), (3,"C",2500,"IT"), (4,"D",3000,"HR"), (5,"E",2000,"HR"), (6,"F",1000,"HR"), (7,"G",4000,"SALES"), (8,"H",4000,"SALES"), (9,"I",1000,"SALES"), (10,"J",2000,"SALES")]
 
-schema1 = ["EmpId", "EmpName", "Salary", "Department"]
+# schema1 = ["EmpId", "EmpName", "Salary", "Department"]
 
-df = spark.createDataFrame(data1,schema1)
+# df = spark.createDataFrame(data1,schema1)
 # df.show()
 
-df_rank = df.select('*',
-                    dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())).alias('Rank'))
+# df_rank = df.select('*',
+#                     dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())).alias('Rank'))
 
 # df_rank.show()
 
@@ -131,4 +131,4 @@ df_rank = df.select('*',
 #                     dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())))
 
 
-df_rank.filter(df_rank.Rank ==1).show()
+# df_rank.filter(df_rank.Rank ==1).show()
