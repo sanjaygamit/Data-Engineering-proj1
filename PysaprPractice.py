@@ -151,7 +151,8 @@ df = df_salary.withColumn('newsaldt',to_date('SalaryDate',"dd-mm-yy"))
 
 df1 = df.join(df_dept,df.DeptId == df_dept.DeptId, how = 'inner').drop(df_dept.DeptId)
 # df1 = df.join(df_dept,['DeptId'])
-df1.show()
+# df1.show()
 
-
+df2 = df1.alias('a').join(df1.alias('b'),col('a.MgrId') ==col('b.EmpId'),'left').select(col('a.DeptName'),col('b.EmpName').alias('ManagerName'),col('a.EmpName').alias('EmployeeName'),col('a.SalaryDAte'),col('a.Salary'))
+# df2.show()
 
