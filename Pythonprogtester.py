@@ -1,3 +1,9 @@
+import logging
+
+logging.basicConfig(level=logging.INFO, filename="log.log", filemode="w"))
+
+
+
 import json
 import os
 
