@@ -27,11 +27,13 @@ from pyspark.sql.types import StructType, StructField, StringType, IntegerType, 
 data = [('Alice', 'Badminton, Tennis'),
         ('Bob', 'Tennis, Cricket'),
         ('Julie', 'Cricket, Carroms')]
-columns = ['Name','Hobbies']
+columns = ['name','hobbies']
 spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
 df = spark.createDataFrame(data,columns)
-df.show()
-
+# df.show()
+from pyspark.sql.functions import explode, split
+df1 =  df.select(df.name,split(df.hobbies,','))
+df1.show()
 
 
 
