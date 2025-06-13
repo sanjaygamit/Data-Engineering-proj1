@@ -25,16 +25,37 @@ from pyspark.sql.functions import explode, split
 # Julie | Carroms
 
 
-data = [('Alice', 'Badminton, Tennis'),
-        ('Bob', 'Tennis, Cricket'),
-        ('Julie', 'Cricket, Carroms')]
-columns = ['name','hobbies']
-spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
+# data = [('Alice', 'Badminton, Tennis'),
+#         ('Bob', 'Tennis, Cricket'),
+#         ('Julie', 'Cricket, Carroms')]
+# columns = ['name','hobbies']
+# spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
+# df = spark.createDataFrame(data,columns)
+# # df.show()
+
+# df1 =  df.select(df.name,explode(split(df.hobbies,',')).alias('Hobbies'))
+# df1.show()
+
+# Write a pyspark query using below input to get below output. 
+
+# city1 | city2 | city3
+# goa   |       | ap
+#       |  ap   | null
+# null  |       | bglr 
+
+
+# #Result 
+
+# Result
+# goa 
+# ap
+# bglr
+
+data = [ ('goa', '', 'ap'), ('', 'ap', None), (None, '', 'bglr')]
+
+columns = ["city1","city2","city3"]
+
+spark = SparkSession.builder.appName("CitySplit").getOrCreate()
+
 df = spark.createDataFrame(data,columns)
-# df.show()
-
-df1 =  df.select(df.name,explode(split(df.hobbies,',')).alias('Hobbies'))
-df1.show()
-
-
-
+df.show()
