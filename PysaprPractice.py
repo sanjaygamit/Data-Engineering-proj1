@@ -125,7 +125,10 @@ df = spark.createDataFrame(data1,schema1)
 df_rank = df.select('*',
                     dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())).alias('Rank'))
 
-df_rank.show()
+# df_rank.show()
 
 # df_rank = df.select('*',
 #                     dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())))
+
+
+df_rank.filter(df_rank.Rank ==1).show()
