@@ -102,5 +102,5 @@ df2 = spark.createDataFrame(data2, schema2)
 df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id)
 
 # df_join.show()
-df_per = df_join.groupBy('id','name').agg(sum('marks').alias('total_marks'))
+df_per = df_join.groupBy('id','name').agg(sum('marks')/count('*')).alias('average_marks')
 df_per.show()
