@@ -132,3 +132,13 @@ from pyspark.sql.window import *
 
 
 # df_rank.filter(df_rank.Rank ==1).show()
+
+spark = SparkSession.builder.appName("EmployeeSalary").getOrCreate()
+
+data1 = [(100,"RAJ",None,1,'01-04-23',5000),(200,"Joanne",100,1,'01-04-23',4000),(200,"Joanne",100,1,'13-04-23',4500),(200,"Joanne",100,1,'14-04-23',4020)]
+
+schema1 = ["EmpId","EmpName","MgrId","DeptId","SalaryDate","Salary"]
+
+df = spark.createDataFrame(data1,schema1)
+# df.show()
+
