@@ -33,10 +33,8 @@ spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
 df = spark.createDataFrame(data,columns)
 # df.show()
 
-
 df1 =  df.select(df.name,explode(split(df.hobbies,',')).alias('Hobbies'))
 df1.show()
-
 
 
 
