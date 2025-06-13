@@ -2,6 +2,7 @@ import json
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, sum as _sum, desc # Alias sum to avoid conflict
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
+from pyspark.sql.functions import explode, split
 
 # Write a pyspark query  using below input to get below output.
 
@@ -31,7 +32,7 @@ columns = ['name','hobbies']
 spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
 df = spark.createDataFrame(data,columns)
 # df.show()
-from pyspark.sql.functions import explode, split
+
 df1 =  df.select(df.name,split(df.hobbies,','))
 df1.show()
 
