@@ -142,6 +142,8 @@ sum(month_sum_data)over();
 3. Different type of views in snowflake.
 4. How you will implement pipepine in snowflake.
 
+PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PLNRxk1s77zfj2M2MuCuEPy_k25bUbv1Py
+
 ######################################## SnowFlake ################################################
 
 - https://www.youtube.com/watch?v=4JYirMYRQC8
