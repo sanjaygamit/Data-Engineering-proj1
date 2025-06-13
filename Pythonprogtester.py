@@ -1,6 +1,6 @@
 import logging
 
-logging.basicConfig(level=logging.INFO, filename="log.log", filemode="w"))
+logging.basicConfig(level=logging.INFO, filename="log.log", filemode="w")
 
 
 
