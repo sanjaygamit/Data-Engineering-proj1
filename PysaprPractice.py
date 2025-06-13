@@ -158,3 +158,11 @@ df2 = df1.alias('a').join(df1.alias('b'),col('a.MgrId') ==col('b.EmpId'),'left')
 
 df3 = df2.groupBy('DeptName','ManagerName','EmployeeName',year('NewSaldt').alias('Year'),date_format('NewSaldt','MMM').alias('Month')).sum('Salary').withColumnRenamed('sum(Salary)', 'TotalSalary')
 df3.show()
+
+# df = spark.read.option('header',True).csv('dbfs:/mnt/input/sales.csv')
+# df.show()
+# df.rdd.getNumPartitions()
+# df.repartition(10)
+# df.rdd.getNumPartitions()
+# df1 = df.select('spark_partitionid().alias('partid')).groupBy('partid').count()
+# df1.show()
