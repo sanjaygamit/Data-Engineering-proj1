@@ -161,4 +161,11 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
   - Query processing(Compute)
   - Cloud Services
 
+  1. What is Snowpipe
+
+     Snowpipe enables loading data from files as soon as they are available in a stage.
+
+  2. What data security features are inbuilt in Snowflake?
+     Data security plays a prominent role in all enterprises. Snowflake adapts the best-in-class security standards for encrypting and securing the customer accounts and data that we store in the Snowflake.
+
 ######################################## SnowFlakeEnd ################################################
