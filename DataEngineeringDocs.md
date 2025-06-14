@@ -176,4 +176,6 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
 3.  How to load data in snowflake.
     Data can be loaded in Snowflake using various ETL tools or COPY command.
 
+4.  Explain Virtual warehouse coast in Snowflake.
+
 ######################################## SnowFlakeEnd ################################################
