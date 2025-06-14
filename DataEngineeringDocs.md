@@ -167,5 +167,13 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
 
   2. What data security features are inbuilt in Snowflake?
      Data security plays a prominent role in all enterprises. Snowflake adapts the best-in-class security standards for encrypting and securing the customer accounts and data that we store in the Snowflake.
+     1. Network security
+     2. allow or block IP
+     3. Mask the data dynamically
+     4. Role based access control for authorisation.
+     5. all the data by default encrypted.
+
+3.  How to load data in snowflake.
+    Data can be loaded in Snowflake using various ETL tools or COPY command.
 
 ######################################## SnowFlakeEnd ################################################
