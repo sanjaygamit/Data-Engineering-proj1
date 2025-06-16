@@ -178,4 +178,6 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
 
 4.  Explain Virtual warehouse coast in Snowflake.
 
+###
+
 ######################################## SnowFlakeEnd ################################################
