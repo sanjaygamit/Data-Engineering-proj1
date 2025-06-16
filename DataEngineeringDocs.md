@@ -178,6 +178,8 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
 
 4.  Explain Virtual warehouse coast in Snowflake.
 
+5.  Permanent tabble, temporary table, transient table,
+
 ###
 
 ######################################## SnowFlakeEnd ################################################
