@@ -180,6 +180,14 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
 
 5.  Permanent tabble, temporary table, transient table,
 
+    #### AWS to Snowflake
+
+    1. How to upload the Data in S3 Service.
+       How to create the external stage in snowflake:
+       CREATE STAGE AWS_STG
+       URL = ''
+       STORAGE_INTEGRATION =
+
 ###
 
 ######################################## SnowFlakeEnd ################################################
