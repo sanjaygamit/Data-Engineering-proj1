@@ -244,6 +244,11 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
     Explain the concept of clustering keys and their significance in Snowflake.
         Clustering keys define how data is physically ordered within micro-partitions. Proper clustering improves query performance by reducing the amount of data scanned during query execution.
 
+    How does Snowflake support data versioning and recovery from accidental data modifications?
+        Snowflake Time travel and fail - safe features support data versioning and recovery by allowing access to historical data and providing a recovery period for data that has been modified or deleted.
 
+    How does Snowflake's multi-cluster architecture handle concurrent workloads, and what are the benefits of this approach?
+        Snowflake's multi-cluster architecture allows multiple virtual warehouses to operate concurrently, each handling different workloads without resource contention. This design ensures high performance, scalabilty, and efficient workload isolation,
+        enabling seamless handling of varying query demands.
 
 ######################################## SnowFlakeEnd ################################################
