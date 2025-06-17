@@ -188,6 +188,21 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
        URL = ''
        STORAGE_INTEGRATION =
 
-###
+### Ingestion Options
+
+    - Copy
+        Efficient bulk loading
+        Control your own warehouse
+        Deterministic latency
+    - Snowpipe
+        Continuous ingestion of files
+        Serverless
+        Median latency ~ 30s
+
+    - Snowpipe Streaming
+        Near real-time ingestion of rowsets
+        Client application needed
+        <5s median latency
+
 
 ######################################## SnowFlakeEnd ################################################
