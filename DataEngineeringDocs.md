@@ -223,4 +223,13 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
         data caching
                         to enhance performance by reducing query response times and minimizing the need to reprocess data.
 
+    How does Snowflake's data sharing feature work, and what are its benefits?
+        Snowflake's secure Data sharing allows organizations to share data in real time with other Snowflake accounts without data duplication, enhancing collaboration and reducing storage costs.
+    What strategies can be employed to optimize query performance in Snowflake ?
+        Optimzing query performance in Snowflake can be achieved through
+            proper data clustering
+            using materializeed views
+            leveraging result caching
+            minimizing data movement by filtering data in queries.
+
 ######################################## SnowFlakeEnd ################################################
