@@ -202,7 +202,9 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
     - Snowpipe Streaming
         Near real-time ingestion of rowsets
         Client application needed
-        <5s median latency
+        < 5s median latency
 
+    What is Snowpipe?
+        Snowpipe is Snowflake's continuous data ingestion service that automatically loads data as it becomes available, ensuring near real-time data availability for analysis.
 
 ######################################## SnowFlakeEnd ################################################
