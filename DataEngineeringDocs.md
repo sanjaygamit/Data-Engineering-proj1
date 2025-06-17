@@ -237,5 +237,13 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
                 and
             drivers,
         supporting data integration workflows by allowing efficient data loading, transformation and unloading operations.
+    What are materialized views in Snowflake, and when should they be used?
+        Materialized views in Snowflake store the results of a query physically, enabling faster query performance for repetitive
+        and complex queries. They should be used when query performance needs to be optimized for frequently accessed data.
+
+    Explain the concept of clustering keys and their significance in Snowflake.
+        Clustering keys define how data is physically ordered within micro-partitions. Proper clustering improves query performance by reducing the amount of data scanned during query execution.
+
+
 
 ######################################## SnowFlakeEnd ################################################
