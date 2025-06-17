@@ -206,5 +206,21 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
 
     What is Snowpipe?
         Snowpipe is Snowflake's continuous data ingestion service that automatically loads data as it becomes available, ensuring near real-time data availability for analysis.
+    How does Snowflake ensure data security and compliance with requlations?
+        End-to-end encryption,
+        Role based access control
+        network policies
+        compliance with standard HIPPA,
+        GDPR
+        SOC2 type II ensuring data protection and regulatory adherence.
+
+    What are the different caching mechanisms in Snowflake, and how do they enhence performance?
+        Snowflake employs
+        result caching,
+        metadata caching
+        query caching
+            and
+        data caching
+                        to enhance performance by reducing query response times and minimizing the need to reprocess data.
 
 ######################################## SnowFlakeEnd ################################################
