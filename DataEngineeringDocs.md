@@ -231,5 +231,7 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
             using materializeed views
             leveraging result caching
             minimizing data movement by filtering data in queries.
+    How does Snowflake integrate with ETL tools and supports data integration workflows ?
+        Snowflake integrates seamlessly with various ETL tools through connectors and drivers, supporting data integration workflows by allowing efficient data loading, transformation and unloading operations.
 
 ######################################## SnowFlakeEnd ################################################
