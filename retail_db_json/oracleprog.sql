@@ -353,6 +353,32 @@ lateral(select level l from dual connect by level <= greatest(length(s1),length(
     - Tax rate is considered "Modified" if the rate has changed as compared to previous date. 
     - Tax rate is considered "Removed" if no rate on the immediate next date. 
 
+Input table 
+ACTIVATION_DT | DEACTIVATION_DT | rate
+---------------------------------------
+01-JAN-18     | 31-JAN-18       | 10
+01-FEB-18     | 27-FEB-18       | 15
+01-MAR-18     | 30-APR-18       | 12 
+
+_________________________________________
+DT            |    RATE         | CHANGE
+-----------------------------------------
+01-JAN-18     | 10              | ADDED 
+01-FEB-18     | 15              | MODIFIED 
+27-FEB-18     | 15              | REMOVED 
+01-MAR-18     | 12              | ADDED 
+30-APR-18     | 12              | REMOVED
+
+ACTIVATION_DT | DEACTIVATION_DT | rate     | P_A_DT     | P_D_DT    | P_RATE   | N_A_DT    | N_D_DT    | N_RATE
+-----------------------------------------------------------------------------------------------------------------
+01-JAN-18     | 31-JAN-18       | 10       |            |           |          | 01-FEB-18 | 27-FEB-18 | 15   
+01-FEB-18     | 27-FEB-18       | 15       | 01-JAN-18  | 31-JAN-18 | 10       | 01-MAR-18 | 30-APR-18 | 12             
+01-MAR-18     | 30-APR-18       | 12       | 01-FEB-18  | 27-FEB-18 | 15       |           |           |          
+
+
+
+
+
 
 
 
