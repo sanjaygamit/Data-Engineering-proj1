@@ -102,18 +102,19 @@ df2 = spark.createDataFrame(data2, schema2)
 
 # df1.show()
 # df2.show()
-df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id).show()
+# df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id).show()
 
-# df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id)
+df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id)
 
 # df_join.show()
+df_per = df_join.groupBy('id','name').agg((sum('marks')/count('*')).alias('Percentage'))
 # df_per = df_join.groupBy('id','name').agg((sum('marks')/count('*')).alias('Percentage'))
 # df_per.show()
-# df_per.select('*',
-#               when(df_per.Percentage >= 80, 'A')
-#               .when((df_per.Percentage >= 60) & (df_per.Percentage < 80), 'B')
-#               .when((df_per.Percentage >= 40) & (df_per.Percentage < 60), 'C')
-#               .otherwise('D').alias('Grade')).show()
+df_per.select('*',
+              when(df_per.Percentage >= 80, 'A')
+              .when((df_per.Percentage >= 60) & (df_per.Percentage < 80), 'B')
+              .when((df_per.Percentage >= 40) & (df_per.Percentage < 60), 'C')
+              .otherwise('D').alias('Grade')).show()
 
 
 # spark = SparkSession.builder.appName("Nthhighest_salary").getOrCreate()
