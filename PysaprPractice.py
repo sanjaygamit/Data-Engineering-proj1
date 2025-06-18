@@ -165,9 +165,13 @@ df1 = df.join(df_dept,df.DeptId == df_dept.DeptId, how = 'inner').drop(df_dept.D
 # df1.show()
 
 df2 = df1.alias('a').join(df1.alias('b'),col('a.MgrId') ==col('b.EmpId'),'left').select(col('a.DeptName'),col('b.EmpName').alias('ManagerName'),col('a.EmpName').alias('EmployeeName'),col('a.SalaryDAte'),col('a.newsaldt'),col('a.Salary'))
-df2.show()
+# df2.show()
 
 # df3 = df2.groupBy('DeptName','ManagerName','EmployeeName',year('NewSaldt').alias('Year'),date_format('NewSaldt','MMM').alias('Month')).sum('Salary').withColumnRenamed('sum(Salary)', 'TotalSalary')
+
+df3 =df2.groupBy('DeptName','ManagerName','EmployeeName',year('newsaldt').alias('Year'),date_format('Newsaldt','MMM').alias('Month')).sum('Salary').withColumnRenamed('sum(Salary)', 'TotalSalary')
+
+
 # df3.show()
 
 # df = spark.read.option('header',True).csv('dbfs:/mnt/input/sales.csv')
