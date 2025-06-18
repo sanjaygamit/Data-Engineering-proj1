@@ -352,3 +352,34 @@ lateral(select level l from dual connect by level <= greatest(length(s1),length(
     -  Tax rate is considered  "added" if no rate existed a day before the current activation data. 
     - Tax rate is considered "Modified" if the rate has changed as compared to previous date. 
     - Tax rate is considered "Removed" if no rate on the immediate next date. 
+
+
+
+
+
+
+41. NTILE function 
+
+with ds as (
+    select sno, sname, NTILE(3)over(order by sno) grp
+    from student
+)
+select 
+    grp, 
+    null sno, 
+    null sname, 
+    min(sno) min_sno, 
+    max(sno) max_sno
+from ds
+group by grp 
+union all 
+select 
+    grp, 
+    sno, 
+    sname, 
+    null, 
+    null
+from ds
+order by grp, sno nulls last;     
+
+
