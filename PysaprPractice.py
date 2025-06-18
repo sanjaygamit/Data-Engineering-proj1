@@ -29,16 +29,16 @@ from pyspark.sql.window import *
 # Julie | Carroms
 
 
-data = [('Alice', 'Badminton, Tennis'),
-        ('Bob', 'Tennis, Cricket'),
-        ('Julie', 'Cricket, Carroms')]
-columns = ['name','hobbies']
-spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
-df = spark.createDataFrame(data,columns)
-# df.show()
-# df1 = df.select(df.name,explode(split(df.hobbies,',')).alias('HB'))
-df1 =  df.select(df.name,explode(split(df.hobbies,',')).alias('Hobbies'))
-df1.show()
+# data = [('Alice', 'Badminton, Tennis'),
+#         ('Bob', 'Tennis, Cricket'),
+#         ('Julie', 'Cricket, Carroms')]
+# columns = ['name','hobbies']
+# spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
+# df = spark.createDataFrame(data,columns)
+# # df.show()
+# # df1 = df.select(df.name,explode(split(df.hobbies,',')).alias('HB'))
+# df1 =  df.select(df.name,explode(split(df.hobbies,',')).alias('Hobbies'))
+# df1.show()
 
 # Write a pyspark query using below input to get below output. 
 
@@ -55,14 +55,15 @@ df1.show()
 # ap
 # bglr
 
-# data = [ ('goa', '', 'ap'), ('', 'ap', None), (None, '', 'bglr')]
+data = [ ('goa', '', 'ap'), ('', 'ap', None), (None, '', 'bglr')]
 
-# columns = ["city1","city2","city3"]
+columns = ["city1","city2","city3"]
 
-# spark = SparkSession.builder.appName("CitySplit").getOrCreate()
+spark = SparkSession.builder.appName("CitySplit").getOrCreate()
 
-# df = spark.createDataFrame(data,columns)
-# df.show()
+df = spark.createDataFrame(data,columns)
+df.show()
+
 
 # df1 = df.withColumn('FirstNotNull',coalesce(df.city1,df.city2,df.city3))
 # df1 = df.withColumn('FirstNotNull',coalesce(
