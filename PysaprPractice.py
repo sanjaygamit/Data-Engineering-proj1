@@ -36,8 +36,8 @@ columns = ['name','hobbies']
 spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
 df = spark.createDataFrame(data,columns)
 # df.show()
-df1 = df.select(explode(split(df.hobbies,',')).alias('HB'))
-# df1 =  df.select(df.name,explode(split(df.hobbies,',')).alias('Hobbies'))
+# df1 = df.select(df.name,explode(split(df.hobbies,',')).alias('HB'))
+df1 =  df.select(df.name,explode(split(df.hobbies,',')).alias('Hobbies'))
 df1.show()
 
 # Write a pyspark query using below input to get below output. 
