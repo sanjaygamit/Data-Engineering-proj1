@@ -29,16 +29,16 @@ from pyspark.sql.window import *
 # Julie | Carroms
 
 
-# data = [('Alice', 'Badminton, Tennis'),
-#         ('Bob', 'Tennis, Cricket'),
-#         ('Julie', 'Cricket, Carroms')]
-# columns = ['name','hobbies']
-# spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
-# df = spark.createDataFrame(data,columns)
-# # df.show()
-
+data = [('Alice', 'Badminton, Tennis'),
+        ('Bob', 'Tennis, Cricket'),
+        ('Julie', 'Cricket, Carroms')]
+columns = ['name','hobbies']
+spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
+df = spark.createDataFrame(data,columns)
+# df.show()
+df1 = df.select(explode(split(df.hobbies,',')).alias('HB'))
 # df1 =  df.select(df.name,explode(split(df.hobbies,',')).alias('Hobbies'))
-# df1.show()
+df1.show()
 
 # Write a pyspark query using below input to get below output. 
 
@@ -133,31 +133,31 @@ from pyspark.sql.window import *
 
 # df_rank.filter(df_rank.Rank ==1).show()
 
-spark = SparkSession.builder.appName("EmployeeSalary").getOrCreate()
+# spark = SparkSession.builder.appName("EmployeeSalary").getOrCreate()
 
-data1 = [(100,"RAJ",None,1,'01-04-23',5000),(200,"Joanne",100,1,'01-04-23',4000),(200,"Joanne",100,1,'13-04-23',4500),(200,"Joanne",100,1,'14-04-23',4020)]
+# data1 = [(100,"RAJ",None,1,'01-04-23',5000),(200,"Joanne",100,1,'01-04-23',4000),(200,"Joanne",100,1,'13-04-23',4500),(200,"Joanne",100,1,'14-04-23',4020)]
 
-schema1 = ["EmpId","EmpName","MgrId","DeptId","SalaryDate","Salary"]
+# schema1 = ["EmpId","EmpName","MgrId","DeptId","SalaryDate","Salary"]
 
-df_salary = spark.createDataFrame(data1,schema1)
-# df_salary.show()
-data2 = [(1,"IT"),(2,"HR")]
-schema2 = ["DeptId","DeptName"]
-df_dept = spark.createDataFrame(data2,schema2)
-# df_dept.show()
+# df_salary = spark.createDataFrame(data1,schema1)
+# # df_salary.show()
+# data2 = [(1,"IT"),(2,"HR")]
+# schema2 = ["DeptId","DeptName"]
+# df_dept = spark.createDataFrame(data2,schema2)
+# # df_dept.show()
 
-df = df_salary.withColumn('newsaldt',to_date('SalaryDate',"dd-mm-yy"))
-# df.show()
+# df = df_salary.withColumn('newsaldt',to_date('SalaryDate',"dd-mm-yy"))
+# # df.show()
 
-df1 = df.join(df_dept,df.DeptId == df_dept.DeptId, how = 'inner').drop(df_dept.DeptId)
-# df1 = df.join(df_dept,['DeptId'])
-# df1.show()
+# df1 = df.join(df_dept,df.DeptId == df_dept.DeptId, how = 'inner').drop(df_dept.DeptId)
+# # df1 = df.join(df_dept,['DeptId'])
+# # df1.show()
 
-df2 = df1.alias('a').join(df1.alias('b'),col('a.MgrId') ==col('b.EmpId'),'left').select(col('a.DeptName'),col('b.EmpName').alias('ManagerName'),col('a.EmpName').alias('EmployeeName'),col('a.SalaryDAte'),col('a.newsaldt'),col('a.Salary'))
-# df2.show()
+# df2 = df1.alias('a').join(df1.alias('b'),col('a.MgrId') ==col('b.EmpId'),'left').select(col('a.DeptName'),col('b.EmpName').alias('ManagerName'),col('a.EmpName').alias('EmployeeName'),col('a.SalaryDAte'),col('a.newsaldt'),col('a.Salary'))
+# # df2.show()
 
-df3 = df2.groupBy('DeptName','ManagerName','EmployeeName',year('NewSaldt').alias('Year'),date_format('NewSaldt','MMM').alias('Month')).sum('Salary').withColumnRenamed('sum(Salary)', 'TotalSalary')
-df3.show()
+# df3 = df2.groupBy('DeptName','ManagerName','EmployeeName',year('NewSaldt').alias('Year'),date_format('NewSaldt','MMM').alias('Month')).sum('Salary').withColumnRenamed('sum(Salary)', 'TotalSalary')
+# df3.show()
 
 # df = spark.read.option('header',True).csv('dbfs:/mnt/input/sales.csv')
 # df.show()

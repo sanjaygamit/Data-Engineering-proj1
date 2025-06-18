@@ -250,5 +250,12 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
     How does Snowflake's multi-cluster architecture handle concurrent workloads, and what are the benefits of this approach?
         Snowflake's multi-cluster architecture allows multiple virtual warehouses to operate concurrently, each handling different workloads without resource contention. This design ensures high performance, scalabilty, and efficient workload isolation,
         enabling seamless handling of varying query demands.
+    How can you implement data masking in Snowflake to protect sensitive information?
+        Data masking in Snowflake can be implemented using dynamic data masking policies, which define how sensitive data is obfuscated based on user roles, ensuring that only authorized users can view the actual data.
+
+    Describe a scenario where you optimized a data pipeline using Snowflake's features.
+        In a recent project, I optimized a data pipeline by implementing Snowpipe for continuous data loading, utilizing materialized views for precomputed aggregations and applying clustering keys to improve query performance, resulting in reduced data latency and faster analytics.
+
+
 
 ######################################## SnowFlakeEnd ################################################

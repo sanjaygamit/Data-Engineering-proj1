@@ -1,4 +1,4 @@
-
+1. Can you describe your experience with Oracle PLSQL and how it relates to this role ?
 Team_Name
 1 India
 2 Pakistan
@@ -66,7 +66,7 @@ product_id, Month_number, Sales_qty, pre_month_qty, Sales_qty  pre_month_qty as 
 
 with ds as (select 
 Transaction_date as Transaction_start_time,
-coalesce(dateadd(second,-1,lead(transaction_date,over(partition by user_id order by transaction_date))),'9999-12-12 23:59:59') as Transaction_end_time 
+coalesce(dateadd(second,-1,lead(transaction_date) over(partition by user_id order by transaction_date)),'9999-12-12 23:59:59') as Transaction_end_time 
 from 
 transaction)
 
