@@ -55,25 +55,25 @@ from pyspark.sql.window import *
 # ap
 # bglr
 
-data = [ ('goa', '', 'ap'), ('', 'ap', None), (None, '', 'bglr')]
+# data = [ ('goa', '', 'ap'), ('', 'ap', None), (None, '', 'bglr')]
 
-columns = ["city1","city2","city3"]
+# columns = ["city1","city2","city3"]
 
-spark = SparkSession.builder.appName("CitySplit").getOrCreate()
+# spark = SparkSession.builder.appName("CitySplit").getOrCreate()
 
-df = spark.createDataFrame(data,columns)
+# df = spark.createDataFrame(data,columns)
 # df.show()
 
 
-df1 = df.withColumn('FirstNotNull',coalesce(df.city1,df.city2,df.city3))
+# df1 = df.withColumn('FirstNotNull',coalesce(df.city1,df.city2,df.city3))
 # df1 = df.withColumn('FirstNotNull',coalesce(
 #     when(df.city1 == '', None).otherwise(df.city1),
 #     when(df.city2 == '',None).otherwise(df.city2),
 #     when(df.city3 == '',None).otherwise(df.city3)) )
 
-df1 = df.withColumn('FirstNotNull',coalesce(when(df.city1=='',None).otherwise(df.city1),when(df.city2 == '',None).otherwise(df.city2),when(df.city3 == '',None).otherwise(df.city3)))
-df3 = df1.select(df1.FirstNotNull)
-df3.show()
+# df1 = df.withColumn('FirstNotNull',coalesce(when(df.city1=='',None).otherwise(df.city1),when(df.city2 == '',None).otherwise(df.city2),when(df.city3 == '',None).otherwise(df.city3)))
+# df3 = df1.select(df1.FirstNotNull)
+# df3.show()
 
 # Q : 
 # Student_id | Student_name 
@@ -90,18 +90,19 @@ df3.show()
 # 3          | pyspark      | 20 
 
 
-# data1 = [(1,"Steve"), (2,"David"), (3,"John"), (4,"Shree"), (5,"Helen")]
-# data2 = [(1,"sql",90), (1,"pyspark",100), (2,"sql",70), (2,"pyspark",60), (3,"sql",30), (3,"pyspark",20), (4,"sql",50), (4,"pyspark",50), (5,"sql",45), (5,"pyspark",45)]
+data1 = [(1,"Steve"), (2,"David"), (3,"John"), (4,"Shree"), (5,"Helen")]
+data2 = [(1,"sql",90), (1,"pyspark",100), (2,"sql",70), (2,"pyspark",60), (3,"sql",30), (3,"pyspark",20), (4,"sql",50), (4,"pyspark",50), (5,"sql",45), (5,"pyspark",45)]
 
-# schema1 = ["id", "name"]
-# schema2 = ["id", "subject", "marks"]
-# spark = SparkSession.builder.appName("student_marks").getOrCreate()
+schema1 = ["id", "name"]
+schema2 = ["id", "subject", "marks"]
+spark = SparkSession.builder.appName("student_marks").getOrCreate()
 
-# df1 = spark.createDataFrame(data1, schema1)
-# df2 = spark.createDataFrame(data2, schema2)
+df1 = spark.createDataFrame(data1, schema1)
+df2 = spark.createDataFrame(data2, schema2)
 
 # df1.show()
 # df2.show()
+df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id).show()
 
 # df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id)
 
