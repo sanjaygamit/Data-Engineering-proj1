@@ -149,11 +149,11 @@ data1 = [(100,"RAJ",None,1,'01-04-23',5000),(200,"Joanne",100,1,'01-04-23',4000)
 schema1 = ["EmpId","EmpName","MgrId","DeptId","SalaryDate","Salary"]
 
 df_salary = spark.createDataFrame(data1,schema1)
-df_salary.show()
-# data2 = [(1,"IT"),(2,"HR")]
-# schema2 = ["DeptId","DeptName"]
-# df_dept = spark.createDataFrame(data2,schema2)
-# # df_dept.show()
+# df_salary.show()
+data2 = [(1,"IT"),(2,"HR")]
+schema2 = ["DeptId","DeptName"]
+df_dept = spark.createDataFrame(data2,schema2)
+df_dept.show()
 
 # df = df_salary.withColumn('newsaldt',to_date('SalaryDate',"dd-mm-yy"))
 # # df.show()
