@@ -90,46 +90,49 @@ from pyspark.sql.window import *
 # 3          | pyspark      | 20 
 
 
-data1 = [(1,"Steve"), (2,"David"), (3,"John"), (4,"Shree"), (5,"Helen")]
-data2 = [(1,"sql",90), (1,"pyspark",100), (2,"sql",70), (2,"pyspark",60), (3,"sql",30), (3,"pyspark",20), (4,"sql",50), (4,"pyspark",50), (5,"sql",45), (5,"pyspark",45)]
+# data1 = [(1,"Steve"), (2,"David"), (3,"John"), (4,"Shree"), (5,"Helen")]
+# data2 = [(1,"sql",90), (1,"pyspark",100), (2,"sql",70), (2,"pyspark",60), (3,"sql",30), (3,"pyspark",20), (4,"sql",50), (4,"pyspark",50), (5,"sql",45), (5,"pyspark",45)]
 
-schema1 = ["id", "name"]
-schema2 = ["id", "subject", "marks"]
-spark = SparkSession.builder.appName("student_marks").getOrCreate()
+# schema1 = ["id", "name"]
+# schema2 = ["id", "subject", "marks"]
+# spark = SparkSession.builder.appName("student_marks").getOrCreate()
 
-df1 = spark.createDataFrame(data1, schema1)
-df2 = spark.createDataFrame(data2, schema2)
+# df1 = spark.createDataFrame(data1, schema1)
+# df2 = spark.createDataFrame(data2, schema2)
 
 # df1.show()
 # df2.show()
 # df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id).show()
 
-df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id)
+# df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id)
 
 # df_join.show()
-df_per = df_join.groupBy('id','name').agg((sum('marks')/count('*')).alias('Percentage'))
+# df_per = df_join.groupBy('id','name').agg((sum('marks')/count('*')).alias('Percentage'))
 # df_per = df_join.groupBy('id','name').agg((sum('marks')/count('*')).alias('Percentage'))
 # df_per.show()
-df_per.select('*',
-              when(df_per.Percentage >= 80, 'A')
-              .when((df_per.Percentage >= 60) & (df_per.Percentage < 80), 'B')
-              .when((df_per.Percentage >= 40) & (df_per.Percentage < 60), 'C')
-              .otherwise('D').alias('Grade')).show()
+# df_per.select('*',
+#               when(df_per.Percentage >= 80, 'A')
+#               .when((df_per.Percentage >= 60) & (df_per.Percentage < 80), 'B')
+#               .when((df_per.Percentage >= 40) & (df_per.Percentage < 60), 'C')
+#               .otherwise('D').alias('Grade')).show()
 
 
-# spark = SparkSession.builder.appName("Nthhighest_salary").getOrCreate()
+spark = SparkSession.builder.appName("Nthhighest_salary").getOrCreate()
 
-# data1 = [(1,"A",1000,"IT"), (1,"B",1500,"IT"), (3,"C",2500,"IT"), (4,"D",3000,"HR"), (5,"E",2000,"HR"), (6,"F",1000,"HR"), (7,"G",4000,"SALES"), (8,"H",4000,"SALES"), (9,"I",1000,"SALES"), (10,"J",2000,"SALES")]
+data1 = [(1,"A",1000,"IT"), (1,"B",1500,"IT"), (3,"C",2500,"IT"), (4,"D",3000,"HR"), (5,"E",2000,"HR"), (6,"F",1000,"HR"), (7,"G",4000,"SALES"), (8,"H",4000,"SALES"), (9,"I",1000,"SALES"), (10,"J",2000,"SALES")]
 
-# schema1 = ["EmpId", "EmpName", "Salary", "Department"]
+schema1 = ["EmpId", "EmpName", "Salary", "Department"]
 
-# df = spark.createDataFrame(data1,schema1)
+df = spark.createDataFrame(data1,schema1)
 # df.show()
+
+df_rank = df.select('*',
+                    dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())).alias('Rank'))
 
 # df_rank = df.select('*',
 #                     dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())).alias('Rank'))
 
-# df_rank.show()
+df_rank.show()
 
 # df_rank = df.select('*',
 #                     dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())))
