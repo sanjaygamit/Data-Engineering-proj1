@@ -443,5 +443,7 @@ from emp
 group by deptno) b
 where a.deptno = b.deptno and a.sal > b.av_sal; 
 
+select * from emp a where a.sal > (select avg(b.sal) from emp b where a.deptno = b.deptno);
+
 
 
