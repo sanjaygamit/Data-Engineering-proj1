@@ -62,17 +62,18 @@ columns = ["city1","city2","city3"]
 spark = SparkSession.builder.appName("CitySplit").getOrCreate()
 
 df = spark.createDataFrame(data,columns)
-df.show()
+# df.show()
 
 
-# df1 = df.withColumn('FirstNotNull',coalesce(df.city1,df.city2,df.city3))
+df1 = df.withColumn('FirstNotNull',coalesce(df.city1,df.city2,df.city3))
 # df1 = df.withColumn('FirstNotNull',coalesce(
 #     when(df.city1 == '', None).otherwise(df.city1),
 #     when(df.city2 == '',None).otherwise(df.city2),
 #     when(df.city3 == '',None).otherwise(df.city3)) )
 
-# df3 = df1.select(df1.FirstNotNull)
-# df3.show()
+df1 = df.withColumn('FirstNotNull',coalesce(when(df.city1=='',None).otherwise(df.city1),when(df.city2 == '',None).otherwise(df.city2),when(df.city3 == '',None).otherwise(df.city3)))
+df3 = df1.select(df1.FirstNotNull)
+df3.show()
 
 # Q : 
 # Student_id | Student_name 
