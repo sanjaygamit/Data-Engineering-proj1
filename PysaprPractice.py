@@ -153,17 +153,19 @@ df_salary = spark.createDataFrame(data1,schema1)
 data2 = [(1,"IT"),(2,"HR")]
 schema2 = ["DeptId","DeptName"]
 df_dept = spark.createDataFrame(data2,schema2)
-df_dept.show()
+# df_dept.show()
 
-# df = df_salary.withColumn('newsaldt',to_date('SalaryDate',"dd-mm-yy"))
-# # df.show()
+# df = df_salary.withColumn('newsaldt',to_date('SalaryDate','dd-mm-yy'))
 
-# df1 = df.join(df_dept,df.DeptId == df_dept.DeptId, how = 'inner').drop(df_dept.DeptId)
+df = df_salary.withColumn('newsaldt',to_date('SalaryDate','dd-mm-yy'))
+# df.show()
+
+df1 = df.join(df_dept,df.DeptId == df_dept.DeptId, how = 'inner').drop(df_dept.DeptId)
 # # df1 = df.join(df_dept,['DeptId'])
-# # df1.show()
+# df1.show()
 
-# df2 = df1.alias('a').join(df1.alias('b'),col('a.MgrId') ==col('b.EmpId'),'left').select(col('a.DeptName'),col('b.EmpName').alias('ManagerName'),col('a.EmpName').alias('EmployeeName'),col('a.SalaryDAte'),col('a.newsaldt'),col('a.Salary'))
-# # df2.show()
+df2 = df1.alias('a').join(df1.alias('b'),col('a.MgrId') ==col('b.EmpId'),'left').select(col('a.DeptName'),col('b.EmpName').alias('ManagerName'),col('a.EmpName').alias('EmployeeName'),col('a.SalaryDAte'),col('a.newsaldt'),col('a.Salary'))
+df2.show()
 
 # df3 = df2.groupBy('DeptName','ManagerName','EmployeeName',year('NewSaldt').alias('Year'),date_format('NewSaldt','MMM').alias('Month')).sum('Salary').withColumnRenamed('sum(Salary)', 'TotalSalary')
 # df3.show()
