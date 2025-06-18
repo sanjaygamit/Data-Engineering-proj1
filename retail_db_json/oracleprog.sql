@@ -376,13 +376,32 @@ ACTIVATION_DT | DEACTIVATION_DT | rate     | P_A_DT     | P_D_DT    | P_RATE   |
 01-MAR-18     | 30-APR-18       | 12       | 01-FEB-18  | 27-FEB-18 | 15       |           |           |          
 
 
+with ds as ()    select ACTIVATION_DT, DEACTIVATION_DT, rate,
+            lag(ACTIVATION_DT) OVER (ORDER BY ACTIVATION_DT) AS P_A_DT,
+            lag(DEACTIVATION_DT) OVER (ORDER BY ACTIVATION_DT) AS P_D_DT,
+            lag(rate) OVER (ORDER BY ACTIVATION_DT) AS P_RATE,
+            lead(ACTIVATION_DT) OVER (ORDER BY ACTIVATION_DT) AS N_A_DT,
+            lead(DEACTIVATION_DT) OVER (ORDER BY ACTIVATION_DT) AS N_D_DT,
+            lead(rate) OVER (ORDER BY ACTIVATION_DT) AS N_RATE    
+            from tax_rates ),
 
+DS2 AS    (  select  ACTIVATION_DT, DEACTIVATION_DT, rate, P_A_DT, P_D_DT, P_RATE, N_A_DT, N_D_DT, N_RATE,
+                case 
+                    when P_A_DT is null OR ACTIVATION_DT <> P_D_DT + 1 then 'ADDED' 
+                    WHEN ACTIVATION_DT = P_D_DT +1 AND RATE <> P_RATE THEN 'MODIFIED' 
+                END ADD_OR_MOD,
+                CASE 
+                    WHEN N_A_DT IS NULL THEN OR DEACTIVATION_DT + 1 <> N_A_DT THEN 'REMOVED' 
+                END REMOVE 
+        FROM DS1 )  
 
-
-
-
-
-
+        SELECT ACTIVATION_DT, DEACTIVATION_DT, rate, P_A_DT, P_D_DT, P_RATE, N_A_DT, N_D_DT, N_RATE, ADD_OR_MOD, REMOVE,
+            DECODE(1,1,ACTIVATION_DT,DEACTIVATION_DT) DT, 
+            RATE, 
+            DECODE(1,1,ADD_OR_MOD,REMOVE) CHANGE_LOG
+            FROM DS2, (SELECT LEVEL L FROM DUAL CONNECT BY LEVEL <=2)
+        ORDER BY ACTIVATION_DT, 1 ;            
+                    
 
 41. NTILE function 
 
@@ -407,5 +426,22 @@ select
     null
 from ds
 order by grp, sno nulls last;     
+
+1. Write a query to select the rows that have "A" in any of the columns(col1,col2,col3,col4,col5) without using "OR" keyword. 
+
+select * from table_a where 'A' in (col1,col2,col3,col4,col5); 
+
+
+2. Write "SQL" statement to select employees getting salary greater than average salary of the department that are working in. 
+
+select deptno, trunc(avg(sal)) av_sal 
+from emp 
+group by deptno; 
+
+select * from emp a,(select deptno, trunc(avg(sal)) av_sal 
+from emp 
+group by deptno) b
+where a.deptno = b.deptno and a.sal > b.av_sal; 
+
 
 
