@@ -510,3 +510,18 @@ select empno, ename, job, mgr, sal,deptno from emp where sal > avg_sal(deptno);)
    13.       | SRILANKA  | NEWZEALAND| SRILANKA  |
    14.       | NEWZEALAND| INDIA     | INDIA     |
    ----------|-----------|-----------|-----------|
+
+   1. Number of matches "played" by each team. 
+   2. Number of matches "won" by each team. 
+   3. Number of matches "lost" by each team. 
+
+
+   with matches_played as ( select team_name, count(*) cnt from 
+                           (select team_a team_name from cricket 
+                           union all 
+                           selectc team_b from cricket)
+                           group by team_name ), 
+        matches_won as ( select WINNER, count(*) cnt from cricket group by winner)                   
+    select team_name, matches_played.cnt, nvl(matches_won.cnt,0) from matches_played full outer join matches_won
+                        on matches_played.team_name = matches_won.winner; 
+
