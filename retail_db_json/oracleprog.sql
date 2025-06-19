@@ -469,4 +469,19 @@ select empno, ename, job, mgr, sal,deptno from emp where sal > avg_sal(deptno);)
     5. 
     Write "SQL" statement to select data from "TAB1" that are not exists in "TAB2" without using "NOT" keyword. 
 
-    
+    select * from tab1 where not exists (select 1 from tab2 where tab2.c1 = tab1.c1);
+
+    select * from tab1
+    minus 
+    select * from tab2; 
+
+    select * from tab1
+    where 1 > (select count(*) from tab2 where tab1.c1 = tab2.c1); 
+
+    select * from 
+    tab1 left outer join tab2 on tab1.c1 = tab2.c1
+    where tab2.c1 is null; 
+
+    select tab1.c1, tab2.c1
+    from tab1 full outer join tab2 on (tab1.c1 = tab2.c1)
+    where tab2.c1 is null; 
