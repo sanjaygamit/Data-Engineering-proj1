@@ -174,10 +174,34 @@ df3 =df2.groupBy('DeptName','ManagerName','EmployeeName',year('newsaldt').alias(
 
 # df3.show()
 
-# df = spark.read.option('header',True).csv('dbfs:/mnt/input/sales.csv')
-# df.show()
-# df.rdd.getNumPartitions()
-# df.repartition(10)
-# df.rdd.getNumPartitions()
-# df1 = df.select('spark_partitionid().alias('partid')).groupBy('partid').count()
-# df1.show()
+df = spark.read.option('header',True).csv('dbfs:/mnt/input/sales.csv')
+df.show()
+df.rdd.getNumPartitions()
+df.repartition(10)
+df.rdd.getNumPartitions()
+df1 = df.select(spark_partition_id().alias('partid')).groupBy('partid').count()
+df1.show()
+
+
+
+df.select(spark_partition_id().alias('partid')).groupBy('partid').count()
+
+# 7. How to process files those are received Before/after specified time? 
+# option(modifiedBefore, modifiedAfter)
+# modifiedBefore : This attribute can be used to read files that were modified before the specified timestamp. 
+# modifiedAfter : This attribute can be used to read files that were modified after the specified timestamp. 
+
+df1 = spark.read.option('header',True).csv(path='dbfs:/mnt/input/sales.csv',modifiedBefore = '2024-01-29 00:00:00')
+df1 = spark.read.option('header',True).csv(path='dbfs:/mnt/input/sales.csv',modifiedAfter = '2024-01-30 00:00:00')
+# display(df1)
+df1.show()
+
+# 8. How to read file from folders & subfolders? how to create Zip/UnZip files? 
+# option (recursiveFileLookup, codec)
+# 1. recursiveFileLookup : This attribute used to recursively scan the directories to read files(it will read data from sub folders too)
+# codec : This attirbute can be used to compress csv or other delimited files using passed compression method. it only workds on csv or normal delimited files. Spark can read gzip without specifying codec but for writting gzip codec must be specified. Compression is the synonym for codec. 
+
+df = spark.raed.option('header',True).option('recursiveFileLookup',True).csv(path='dbfs:/mnt/input/sales.csv')
+
+
+# Unity Catalogs 
