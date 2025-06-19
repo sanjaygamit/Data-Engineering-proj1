@@ -525,3 +525,8 @@ select empno, ename, job, mgr, sal,deptno from emp where sal > avg_sal(deptno);)
     select team_name, matches_played.cnt, nvl(matches_won.cnt,0) from matches_played full outer join matches_won
                         on matches_played.team_name = matches_won.winner; 
 
+
+    15. Write a query to print number from 1 to "n" numbers. 
+        
+
+
