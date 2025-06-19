@@ -203,5 +203,9 @@ df1.show()
 
 df = spark.raed.option('header',True).option('recursiveFileLookup',True).csv(path='dbfs:/mnt/input/sales.csv')
 
+df.write.option('header',True).mode('overwrite').csv(path='dbfs:/mnt/output/sales.csv.gzip',sep='|',compression = 'gzip',encode='cp1252')
+
+spark.read.option('header',True).csv(path='dbfs:/mnt/output/sales.csv.gzip',sep='|',encode='cp1252')
+
 
 # Unity Catalogs 
