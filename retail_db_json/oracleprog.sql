@@ -437,13 +437,17 @@ select * from table_a where 'A' in (col1,col2,col3,col4,col5);
 select deptno, trunc(avg(sal)) av_sal 
 from emp 
 group by deptno; 
-
+    1.
 select * from emp a,(select deptno, trunc(avg(sal)) av_sal 
 from emp 
 group by deptno) b
 where a.deptno = b.deptno and a.sal > b.av_sal; 
-
+    2. 
 select * from emp a where a.sal > (select avg(b.sal) from emp b where a.deptno = b.deptno);
 
-
-
+    3. 
+select * from 
+(select empno, ename, job, mgr, hiredate, sal, comm, deptno , 
+        avg(sal) over(partition by deptno) as avg_sal 
+from emp)        
+where sal > avg_sal; 
