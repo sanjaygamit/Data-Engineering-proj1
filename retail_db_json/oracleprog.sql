@@ -485,3 +485,28 @@ select empno, ename, job, mgr, sal,deptno from emp where sal > avg_sal(deptno);)
     select tab1.c1, tab2.c1
     from tab1 full outer join tab2 on (tab1.c1 = tab2.c1)
     where tab2.c1 is null; 
+
+
+    select c1 
+    from tab1
+    where (select count(1) from tab2 where tab2.c1 = tab1.c1) = 0; 
+
+    4. For the given table "CRICKET"
+
+    MATCH NO | TEAM A    | TEAM B    | WINNER    |  
+    ---------|-----------|-----------|-----------|
+    1.       | WESTINDIES| SRILANKA  | WESTINDIES|
+    2.       | INDIA     | SRILANKA  | INDIA     | 
+    3.       | AUSTRALIA | SRILANKA  | AUSTRALIA |
+    4.       | WESTINDIES| SRILANKA  | SRILANKA  |
+    5.       | AUSTRALIA | INDIA     | AUSTRALIA |
+    6.       | WESTINDIES| SRILANKA  | WESTINDIES| 
+    7.       | INDIA     | WESTINDIES| WESTINDIES|
+    8.       | WESTINDIES| AUSTRALIA | AUSTRALIA |
+    9.       | WESTINDIES| INDIA     | INDIA     |
+   10.       | AUSTRALIA | WESTINDIES| WESTINDIES|
+   11.       | WESTINDIES| SRILANKA  | WESTINDIES|
+   12.       | INDIA     | AUSTRALIA | INDIA     |
+   13.       | SRILANKA  | NEWZEALAND| SRILANKA  |
+   14.       | NEWZEALAND| INDIA     | INDIA     |
+   ----------|-----------|-----------|-----------|
