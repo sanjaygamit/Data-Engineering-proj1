@@ -464,3 +464,9 @@ with function avg_saql(p_deptno number) return number as
     end avg_sal; 
 
 select empno, ename, job, mgr, sal,deptno from emp where sal > avg_sal(deptno);)    
+
+
+    5. 
+    Write "SQL" statement to select data from "TAB1" that are not exists in "TAB2" without using "NOT" keyword. 
+
+    
