@@ -329,7 +329,7 @@ order by grp, sno, nulls last;
  substr(s1,l,1) c1, 
  substr(s2,l,1) c2, 
  listagg(substr(s1,l,1)) within group (order by substr(s1,l,1)) str1,
-  listagg(substr(s1,l,1)) within group (order by substr(s1,l,1)) str2, 
+  listagg(substr(s2,l,1)) within group (order by substr(s2,l,1)) str2, 
   case when listagg(substr(s1,l,1)) within group (order by substr(s1,l,1)) = 
          listagg(substr(s2,l,1)) within group (order by substr(s2,l,1)) 
       then 'ANAGRAM' else 'NOT ANAGRAM' end anagram
@@ -527,6 +527,6 @@ select empno, ename, job, mgr, sal,deptno from emp where sal > avg_sal(deptno);)
 
 
     15. Write a query to print number from 1 to "n" numbers. 
-        
+
 
 

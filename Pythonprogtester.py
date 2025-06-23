@@ -80,7 +80,8 @@ def process_files(ds_names = None):
 
 # print("Minimum height of the binary tree is", min_height_binary(root))
 
-	
-	
+	select rownum, 'WELCOME' 
+from dual,  
+connect by level <= length('WELCOME');
 	
     
