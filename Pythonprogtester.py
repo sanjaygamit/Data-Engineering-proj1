@@ -80,13 +80,25 @@ def process_files(ds_names = None):
 
 # print("Minimum height of the binary tree is", min_height_binary(root))
 
-	select 
-        substr(s,rownum,1) output1,
-        substr(s,rownum*-1,1) output2,
-        substr(s,1,rownum) output3,
-        substr(s,rownum) output4, 
-        rpad(' ',rownum,' ')||substr(s,rownum) output5
-from dual, (select 'WELCOME' S from dual) 
-connect by level <= length('S');
+# 	select 
+#         substr(s,rownum,1) output1,
+#         substr(s,rownum*-1,1) output2,
+#         substr(s,1,rownum) output3,
+#         substr(s,rownum) output4, 
+#         rpad(' ',rownum,' ')||substr(s,rownum) output5,
+#         rpad(' ',length(s)+1-rownum,' ')||substr(s,rownum) output6,
+#         rpad(' ',rownum,' ')||substr(s,rownum) output5,
+# from dual, (select 'WELCOME' S from dual) 
+# connect by level <= length('S');
 	
     
+#   extract name from email id; 
+
+with d as (select 'sanju.gamit@gmai.com' m from dual),
+  ds as (    select * from d;   
+select substr(m,1,instr(m,'@')-1) n,  
+substr(m,instr(m,'@')+1) d 
+from d ) 
+select 
+select substr(n,1,instr(n,'.',1,1))
+from ds;
