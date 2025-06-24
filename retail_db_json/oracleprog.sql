@@ -569,5 +569,7 @@ connect by prior empno = a.empno) group_sal
 from emp_t a 
 ; 
 
+# Write a SQl TO list "no of employees" & "name of employees" reporting to each person. 
+
 
 
