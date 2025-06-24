@@ -554,3 +554,20 @@ from d )
 select 
 select substr(n,1,instr(n,'.',1,1))
 from ds;
+
+
+select empno, ename, mgr, sal, sys_connect_by_path(ename, '---->')
+from emp_t 
+start with mgr is null 
+connect by prior empno = mgr; 
+
+select empno, ename, mgr, sal, 
+(select sum(sal)
+from emp_t 
+start with mgr is null 
+connect by prior empno = a.empno) group_sal
+from emp_t a 
+; 
+
+
+
