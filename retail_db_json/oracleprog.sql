@@ -1,3 +1,17 @@
+-------- PERFORMANCE -----------
+1. Implement the logic in SQL (Instead of PLSQL) as for as possible. 
+2. Use the "inbuilt functions"/"analytical functions" as much as possible. 
+3. Use "Global temporary tables"
+4. Use "insert append hint"
+5. Use "Pass by reference" (NOCOPY Compiler Hint) 
+6. Consolidate the redundant code.  
+7. Bulk collection
+8. Use "LOB" variables only if needed. (Use extended data types from 12c)
+ 
+
+
+
+
 1. Can you describe your experience with Oracle PLSQL and how it relates to this role ?
 Team_Name
 1 India
