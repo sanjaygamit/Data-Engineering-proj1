@@ -8,8 +8,12 @@
 7. Bulk collection
 8. Use "LOB" variables only if needed. (Use extended data types from 12c)
  
+ Bulk Binding : 
+    PLSQL and SQL communicate as follows: To run a select into or DML statement, the PL/SQL engine sends the query or DML statement to the SQL engine. The SQL engine runs the query or DML statement and returns the result to the PL/SQL engine. 
 
+Assigning values to PL/SQL variables that appear in SQL statement is called binding. 
 
+For in-binds and out-binds, bulk SQL  uses bulk binding; that is, it binds an entire collection of values at once. For a collection of n elements, bulk SQL uses a single operation to perform the equivalent of n SELECT INTO or DML statements. A query that uses bulk SQL can return any number of rows, without using a FETCH statement for each one. 
 
 
 1. Can you describe your experience with Oracle PLSQL and how it relates to this role ?
