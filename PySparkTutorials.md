@@ -95,4 +95,17 @@ display(df)
 
 ## How to read csv file with schema opotion.
 
-spark.read.option('header',True).csv('/mnt/input/sales/sales.csv')
+df = spark.read.option('header',True).csv('/mnt/input/sales/sales.csv')
+
+df.schema
+
+from pyspark.sql.types import StructType, StructField, IntegerType, StringType, DecimalType, DateType
+
+schema = StructType([
+StructField("SOID", IntegerType(), False),
+StructField("SODate", DateType(), False),
+StructField("ItemCode", StringType(), False),
+StructField("ItemName", StringType(), False),
+StructField("Qty", IntegerType(), False),
+StructField("Value", IntegerType(),False)
+])
