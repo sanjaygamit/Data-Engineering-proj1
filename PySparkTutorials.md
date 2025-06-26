@@ -81,3 +81,18 @@ StructField("age", IntegerType(), True),
 StructField("salary", DecimalType(), True)])
 
 df = spark.createDataFrame([],schema)
+
+data = [(1,'susheel',30,4000),(2,'prabhu',32,5000)]
+schema = StructType([
+StructField("id", IntegerType(), True),
+StructField("name", StringType(), False),
+StructField("age", IntegerType(), True),
+StructField("salary", DecimalType(), True)
+])
+
+df = spark.createDataFrame(data,schema)
+display(df)
+
+## How to read csv file with schema opotion.
+
+spark.read.option('header',True).csv('/mnt/input/sales/sales.csv')
