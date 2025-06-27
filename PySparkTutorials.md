@@ -131,8 +131,38 @@ df_new = spark.read.option('header',True).schema(schema).csv('/mnt/input/sales/s
                             StructField("Address",AddressSchema)
                            ])
 
+df_nsl = spark.read.option("singleLine",True).schema(custSchema).json('/mnt/input/CustomerNSL.json')
 
-    df_nsl = spark.read.option("singleLine",True).schema(custSchema).json('/mnt/input/CustomerNSL.json')
-    df_nsl = spark.read.option("multiLine",True).schema(custSchema).json('/mnt/input/CustomerNML.json')
+df_nsl = spark.read.option("multiLine",True).schema(custSchema).json('/mnt/input/CustomerNML.json')
 
 # 11. filter and like operator
+
+df = spark.read.option('header',True).csv('/mnt/input/Sales/Sales.csv')
+
+display(df)
+
+df = df.withColumnRenamed('Item Name','ItemName')
+
+display(df)
+
+df.filter(df.ItemName=="Total income")
+
+import pyspark.sql.functions import \*
+
+#df1 = df.filter(col("ItemName") == "Total income")
+
+#display(df1)
+
+#df1 = df.filter(col("ItemName").like("%Total%"))
+
+#display(df1)
+
+df.filter(((df.ItemName == "Total income") & (df.Qty == 5)) | (df.SOID <= 63 ))
+
+# 12 STARTSWITH & ENDSWITH in PySpark
+
+from pyspark.sql.functions import \*
+
+df1 = df.filter(df.ItemName.startswith('Total'))
+df2 = df.filter(df.ItemName.endswith('income'))
+df3 = df.filter(df.ItemName.contains('operating'))
