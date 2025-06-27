@@ -38,3 +38,12 @@ Snowflake features
 23. Snowflake monitors and billing
 24. Snowflake connectors(JDBC/ODBC/Python)
 25. PowerBI & Tableau with Snowflake.
+
+One plateform, One Copy of Data, Many Workload
+
+1. Data Warehouse - Modernize data warehousing to deliver faster analytics at scale.
+2. Data Engineering - Rethink transformation with robust and integrated data pipelines.
+3. Data Lake - Simplify and accelerate your data lake with one platform for all your data.
+4. Data Applicatiion - Develop apps with fast and scalable analytics that delight customers.
+5. Data Exchanges - Empower your ecosystem with secure, governed access to all data.
+6. Data Science - Simplify and accelerate machine learning and artificial intelligence.
