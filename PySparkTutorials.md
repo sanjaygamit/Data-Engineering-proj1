@@ -134,3 +134,5 @@ df_new = spark.read.option('header',True).schema(schema).csv('/mnt/input/sales/s
 
     df_nsl = spark.read.option("singleLine",True).schema(custSchema).json('/mnt/input/CustomerNSL.json')
     df_nsl = spark.read.option("multiLine",True).schema(custSchema).json('/mnt/input/CustomerNML.json')
+
+# 11. filter and like operator
