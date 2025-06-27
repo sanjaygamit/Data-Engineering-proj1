@@ -109,3 +109,28 @@ StructField("ItemName", StringType(), False),
 StructField("Qty", IntegerType(), False),
 StructField("Value", IntegerType(),False)
 ])
+
+df_new = spark.read.option('header',True).schema(schema).csv('/mnt/input/sales/sales.csv')
+
+# 9. Read Single line, Multiline & Complex type Json file.
+
+    1. Single line Json file.
+    2. Multiline Json file.
+    3. Single line Complex(Nested) Json file.
+    4. Multiline Complex(Nested) Json file.
+
+    from pyspark.sql.types import StructType, StructField, IntegerType, StringType
+
+    AddressSchema = StructType([ StructField("City",StringType(),False),
+                                 StructField("State",StringType(),False)
+                               ])
+
+    CustSchema = StructType([
+                            StructField("name", StringType(),False),
+                            StructField("age",IntegerType(),False),
+                            StructField("Address",AddressSchema)
+                           ])
+
+
+    df_nsl = spark.read.option("singleLine",True).schema(custSchema).json('/mnt/input/CustomerNSL.json')
+    df_nsl = spark.read.option("multiLine",True).schema(custSchema).json('/mnt/input/CustomerNML.json')
