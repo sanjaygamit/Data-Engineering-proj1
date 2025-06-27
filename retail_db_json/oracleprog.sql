@@ -77,7 +77,7 @@ Find the change in sales qty w.r.t prev month sales for each product.
     sales_qty
  from sales)
  select 
-product_id, Month_number, Sales_qty, pre_month_qty, Sales_qty  pre_month_qty as diff_qty
+product_id, Month_number, Sales_qty, pre_month_qty, Sales_qty - pre_month_qty as diff_qty
  from ds ; 
  
 #-------------------------------------------------#
