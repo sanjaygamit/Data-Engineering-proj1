@@ -169,3 +169,9 @@ df3 = df.filter(df.ItemName.contains('operating'))
 
 df.filter(df.ItemName.isin('Total income','Total expenditure','Total profit'))
 df.filter(~df.ItemName.isin('Total income','Total expenditure','Total profit'))
+
+# 13. Select in Pyspark | alias in Pyspark
+
+display(df.select('SOID','SODate','ItemName','Qty','Value))
+
+display(df.select('\*'))
