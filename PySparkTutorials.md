@@ -177,3 +177,23 @@ display(df.select('SOID','SODate','ItemName','Qty','Value))
 display(df.select('\*'))
 
 display(df.select('_',(df.qty _ df.value).alias('amount')))
+
+# 14. When(case statement)
+
+df.select('\*', when(df.Itemname == 'Total income', df.qty+100)
+.when(df.Itemname == 'Sales government funding and subsidied',df.qty + 200)
+.when(df.ItemName == 'Interest dividends and donations',df.qty+300)
+.otherwise(1000).alias('NewQty)
+)
+
+# 15 NULL handling in PySpark DataFrame
+
+    1. isnull
+    2. isnot null
+    3. Realtime use of isnull & isnot null
+
+display(df.select('\*',df.Itemname.isnull().alias('ItemName )))
+
+display(df.select('\*',df.Itemname.isNotNull().alias('ItemName )))
+
+display(df.filter(df.ItemName.isnull()) )
