@@ -166,3 +166,5 @@ from pyspark.sql.functions import \*
 df1 = df.filter(df.ItemName.startswith('Total'))
 df2 = df.filter(df.ItemName.endswith('income'))
 df3 = df.filter(df.ItemName.contains('operating'))
+
+df.filter(df.ItemName.isin('Total income','Total expenditure','Total profit'))
