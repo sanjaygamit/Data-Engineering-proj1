@@ -175,3 +175,5 @@ df.filter(~df.ItemName.isin('Total income','Total expenditure','Total profit'))
 display(df.select('SOID','SODate','ItemName','Qty','Value))
 
 display(df.select('\*'))
+
+display(df.select('_',(df.qty _ df.value).alias('amount')))
