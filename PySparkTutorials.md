@@ -210,3 +210,18 @@ df.na.fill('NA',['ItemName'])
 df.na.fill('NA',['ItemName','Item Code'])
 
 df.na.fillna('NA',['ItemName','Item Code'])
+
+# 17. GroupBy function
+
+    1. Group By
+    2. Aggregate functions
+    3. Agg function
+
+df1 = df.groupBy('ItemName').count()
+df1 = df.groupBy('ItemName').max('Qty')
+df1 = df.groupBy('ItemName').min('Qty')
+df1 = df.groupBy('ItemName').sum('Qty')
+df1 = df.groupBy('ItemName').avg('Qty')
+df1 = df.groupBy('ItemName').sum('Qty','value')
+df1 = df.groupBy('ItemCode','ItemName').sum('Qty','value')
+df1 = df.groupBy('ItemName').agg(sum('Qty'),avg('value'))
