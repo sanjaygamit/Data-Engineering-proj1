@@ -204,3 +204,9 @@ df.select('\*',when(df.ItemName.isnull(),'NA').otherwise(df.Itemname).alias('Ite
 
 df.na.fill('NA')
 display(df1)
+
+df.na.fill('NA',['ItemName'])
+
+df.na.fill('NA',['ItemName','Item Code'])
+
+df.na.fillna('NA',['ItemName','Item Code'])
