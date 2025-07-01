@@ -266,3 +266,77 @@ display
     3. distinct() vs dropDuplicates()
 
     difference is distinct() performs on all columns whereas dropDuplicates() is used on selected columns.
+
+df1 = df.distinct()
+display(df1)
+
+df1 = df.dropDuplicates(['ItemName'])
+df1 = df.dropDuplicates(['ItemName']).select('ItemName)'
+display(df1)
+
+# 21 Join
+
+    1. Inner
+    2. outer(outer, full,fullouter,full_outer)
+    3. left(left,leftouter,left_outer)
+    4. Right(right,rightouter,right_outer)
+    5. Anti(anti,leftanti,left_anti)
+    6. Semi(semi,leftsemi,left_semi)
+
+data = [(1,"Susheel","10","M",4000),
+(2,"Bhallar","20","M",3000),
+(3,"Prabhu","10","M",4000),
+(4,"Sandhya","10","F",2000),
+(5,"Vaibhav","40","M",3500),
+(6,"Amrita","50","F",2500)]
+
+schema = ["empid","empname","deptid","gender","salary"]
+
+empDF = spark.createDataFrame(data,schema)
+
+dept = [("finance",10),
+("marketing",20),
+("sales",30),
+("it",40)]
+
+deptschema = ["deptname","deptid"]
+
+deptDF = spark.createDataFrame(dept,deptschea)
+
+df = empDF.join(deptDF, empDF.deptid == deptDF.deptid ,"inner")
+df = empDF.join(deptDF, empDF.deptid == deptDF.deptid ,"outer")
+df = empDF.join(deptDF, empDF.deptid == deptDF.deptid ,"fullouter")
+df = empDF.join(deptDF, empDF.deptid == deptDF.deptid ,"full_outer")
+df = empDF.join(deptDF, empDF.deptid == deptDF.deptid ,"full")
+df = empDF.join(deptDF, empDF.deptid == deptDF.deptid ,"anti")
+df = empDF.join(deptDF, empDF.deptid == deptDF.deptid ,"semi") -- it will work as inner join.
+
+display(df)
+
+# 22. concat and concat_ws in pyspark | concat vs concat_ws in pyspark
+
+    1. Concat
+    2. Concat_ws
+    3. Concat vs Concat_ws
+
+from pyspark.sql.functions import concat,col,lit,concat_ws,regexp_replace
+
+df1 = df.select(concat(df.firstname,lit(','),df.middlename,lit(','),df.lastname).alias("fullname))
+display(df1)
+
+df1 = df.select(concat_ws(',',df.firstname,df.middlename,df.lastname).alias("fullname"))
+display(df1)
+
+df1.select(regexp_replace(df1.fullname,"||","|").alias("fullnamenew"),df.gender)
+
+# 23. Split()
+
+    Pyspark SQL provides split() function to convert delimiter separated string to an Array column on DF. This can be done by splitting a string column based on delimiter like pipeline, comma, space etc.
+
+df1 = df.withColumn('year',split(df['dob'],'-').getitem(0))\
+.withColumn('month',split(df['dob'],'-').getitem(1))
+
+split = split(df['dob'],'-')
+
+df1 = df.select("firstname","middlename","lastneme,split.getItem(0).alias('year'),split.getItem(1).alias('month'))
+display(df1)
