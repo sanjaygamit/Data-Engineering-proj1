@@ -56,4 +56,6 @@ One plateform, One Copy of Data, Many Workload
     - Tables are transparently partitioned using the ordering of the data as it is iserted/loaded.
     - Snowflake is columnar-based and horizontally partitioned, meaning a row of data is stored in the same micro-partition.
     - Micro-partitions are small in size (50 - 500 MB)
-    - Data is compressed in micro partirions, snowflake automatically determines the most efficient compression algorithm for the columns in each micro-partition.
+    - Data is compressed in micro partirions, snowflake automatically determines the most efficient compression algorithm for the   columns in each micro-partition.
+
+# QUERY PRUNING :- When a query is executed, it does not need to scan the entire dataset but instead only queries the micro-partitions that hold relevant data. This process is know as query pruning as the data is pruned before the query is executed.
