@@ -47,3 +47,13 @@ One plateform, One Copy of Data, Many Workload
 4. Data Applicatiion - Develop apps with fast and scalable analytics that delight customers.
 5. Data Exchanges - Empower your ecosystem with secure, governed access to all data.
 6. Data Science - Simplify and accelerate machine learning and artificial intelligence.
+
+# MICRO PARTITIONS
+
+    - Snowflake has implemented a powerful and unique form of partitioning, called micro-partitioning.
+    - Micro-partitioning is automatically performed on all Snowflake tables.
+    - Tables are transparently partitioned using the ordering of the data as it is inserted/loaded.
+    - Tables are transparently partitioned using the ordering of the data as it is iserted/loaded.
+    - Snowflake is columnar-based and horizontally partitioned, meaning a row of data is stored in the same micro-partition.
+    - Micro-partitions are small in size (50 - 500 MB)
+    - Data is compressed in micro partirions, snowflake automatically determines the most efficient compression algorithm for the columns in each micro-partition.
