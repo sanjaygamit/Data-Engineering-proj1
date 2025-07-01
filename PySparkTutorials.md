@@ -197,3 +197,10 @@ display(df.select('\*',df.Itemname.isnull().alias('ItemName )))
 display(df.select('\*',df.Itemname.isNotNull().alias('ItemName )))
 
 display(df.filter(df.ItemName.isnull()) )
+
+df.select('\*',when(df.ItemName.isnull(),'NA').otherwise(df.Itemname).alias('ItemName'))
+
+# 16. fill() & fillna() functions in PySpark | How to replace null values in pyspark.
+
+df.na.fill('NA')
+display(df1)
