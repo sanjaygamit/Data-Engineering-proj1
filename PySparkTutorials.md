@@ -225,3 +225,22 @@ df1 = df.groupBy('ItemName').avg('Qty')
 df1 = df.groupBy('ItemName').sum('Qty','value')
 df1 = df.groupBy('ItemCode','ItemName').sum('Qty','value')
 df1 = df.groupBy('ItemName').agg(sum('Qty'),avg('value'))
+
+# 18 count and countDistinct function in PySpark
+
+    1. count
+    2. count with groupBy
+    3. distinct() with count()
+    4. countDistinct()
+
+df.count()
+
+df1 = df.groupBy('ItemName').count()
+
+df.distinct().count() -- Total distinct count on this dataframe.
+
+from pyspark.sql.functions import countDistinct
+
+df1 =df.select(countDistinct('ItemName'))
+df1 =df.select(countDistinct('ItemName','SOID'))
+display(df1)
