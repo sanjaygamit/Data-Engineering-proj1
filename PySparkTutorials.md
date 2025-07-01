@@ -244,3 +244,25 @@ from pyspark.sql.functions import countDistinct
 df1 =df.select(countDistinct('ItemName'))
 df1 =df.select(countDistinct('ItemName','SOID'))
 display(df1)
+
+# 19. OrderBy in pyspark | Sort in pyspark | Difference between orderby and sort.
+
+    1. sort()
+    2. orderby()
+
+    We can use either sort() or orderBy() function in PySpark to sort DF by ascending and descending order.
+
+df1 = df.sort('qty')
+df1 = df.orderBy('qty')
+
+df1 = df.orderBy(df.Qty.desc())
+df1 = df.orderBy(col('qty').desc(),df.value.asc())
+display
+
+# 20 Distinct and dropduplicate in PySpark | How to remove duplicate
+
+    1. distinct()
+    2. dropduplicate()
+    3. distinct() vs dropDuplicates()
+
+    difference is distinct() performs on all columns whereas dropDuplicates() is used on selected columns.
