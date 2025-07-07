@@ -618,3 +618,21 @@ from emp_t a
     value_error
     zero_divide
     
+
+# Oracle optimizer Access Methods 
+    1. Full table scan. 
+    2. Table access by rowid.     
+    3. index unique scan 
+    4. index range scan 
+    5. index skip scan 
+    6. full index scan 
+    7. fast full index scan 
+    8. Index join
+    9. Bitmap indexes 
+    
+# Oracle has three join methods. 
+    1. Nested loop
+    2. hash join 
+    3. sort merge join 
+    
+        
