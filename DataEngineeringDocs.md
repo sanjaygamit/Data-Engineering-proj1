@@ -256,6 +256,36 @@ PYSPARK INTERVIEW QUESTION : https://www.youtube.com/watch?v=EsCv8c0l9XQ&list=PL
     Describe a scenario where you optimized a data pipeline using Snowflake's features.
         In a recent project, I optimized a data pipeline by implementing Snowpipe for continuous data loading, utilizing materialized views for precomputed aggregations and applying clustering keys to improve query performance, resulting in reduced data latency and faster analytics.
 
-
-
 ######################################## SnowFlakeEnd ################################################
+
+Spark Glossary
+
+1. application :
+   user program built on Spark.
+   Consists of a driver program and executors on the cluster.
+
+2. Applicatoin Jar :
+   A jar containing the user's Spark Application. In some cases users will want to create an "user jar" containing
+   their application along with its dependencies. The user's jar should never include Hadoop or Spark libraries, however, these will be added at runtime.
+3. Driver Program :
+   The process running the main() function of the application and creating the Spark Context.
+
+4. Cluster manager :
+   An external service for acquiring resources on the cluster(e.g. Standalone manager)
+
+5. Deploy Mode
+   Distinguishes where the driver process runs. In "cluster" mode, the framework launches the driver inside of the cluster.
+   In "Client" mode, the submitter launches the driver outside of the cluster.
+
+6. Worker Node :
+   Any node that can run application code in the cluster.
+
+7. Executor :  
+   A process launches for an application on a worker node, that runs tasks and keep data in memory or disk storage across them. Each application has its own executors.
+
+8. Task :  
+   A unit of work that will be sent to executor.
+
+9. Job :
+   A parallel computing consisting of multiple taks that gets spawned in response to a spark action. (e.g. save , collect). You will see this term used in the driver's logs.
+10. Each job gets divided into smaller sets of tasks called stages that depend on each other.
