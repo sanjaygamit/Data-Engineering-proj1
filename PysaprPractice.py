@@ -1,6 +1,7 @@
 import json
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import * 
+from pyspark.sql.functions import col,cast
 from pyspark.sql.functions import col, sum as _sum, desc # Alias sum to avoid conflict
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
 from pyspark.sql.functions import explode, split
@@ -29,13 +30,25 @@ from pyspark.sql.window import *
 # Julie | Carroms
 
 
-# data = [('Alice', 'Badminton, Tennis'),
-#         ('Bob', 'Tennis, Cricket'),
-#         ('Julie', 'Cricket, Carroms')]
-# columns = ['name','hobbies']
-# spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
+data = [('Alice', 'Badminton, Tennis'),
+        ('Bob', 'Tennis, Cricket'),
+        ('Julie', 'Cricket, Carroms')]
+columns = ['name','hobbies']
+spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
+
+# df = spark.read.option('header',True).csv('/Users/sanjaykumarshantilal/Documents/Python/Databricks/Data-Engineering-proj1/retail_db/orders/part-00000', header=True, inferSchema=True)
+
+# d/Users/sanjaykumarshantilal/Documents/Python/Databricks/Data-Engineering-proj1/retail_db/orders_csv') f_csv = df.write.mode('overwrite').parquet(' 
+# df_parquet = spark.read.option('header',True).csv('/Users/sanjaykumarshantilal/Documents/Python/Databricks/Data-Engineering-proj1/retail_db/orders_csv/part-00000-2d552c22-2a90-4718-8cec-eaba85347d40-c000.snappy.parquet', header=True, inferSchema=True)
+
+# df_parquet.show()
+
+# df = df.withcolumn('len',len(df.name)).withColumn('age',cast()df.age.cast(IntegerType()))
+
 # df = spark.createDataFrame(data,columns)
-# # df.show()
+# df.show()
+
+# df.printSchema()
 # # df1 = df.select(df.name,explode(split(df.hobbies,',')).alias('HB'))
 # df1 =  df.select(df.name,explode(split(df.hobbies,',')).alias('Hobbies'))
 # df1.show()
@@ -90,18 +103,25 @@ from pyspark.sql.window import *
 # 3          | pyspark      | 20 
 
 
-# data1 = [(1,"Steve"), (2,"David"), (3,"John"), (4,"Shree"), (5,"Helen")]
-# data2 = [(1,"sql",90), (1,"pyspark",100), (2,"sql",70), (2,"pyspark",60), (3,"sql",30), (3,"pyspark",20), (4,"sql",50), (4,"pyspark",50), (5,"sql",45), (5,"pyspark",45)]
+data1 = [(1,"Steve"), (2,"David"), (3,"John"), (4,"Shree"), (5,"Helen")]
+data2 = [(1,"sql",90), (1,"pyspark",100), (2,"sql",70), (2,"pyspark",60), (3,"sql",30), (3,"pyspark",20), (4,"sql",50), (4,"pyspark",50), (5,"sql",45), (5,"pyspark",45)]
 
-# schema1 = ["id", "name"]
-# schema2 = ["id", "subject", "marks"]
+schema1 = ["id", "name"]
+schema2 = ["id", "subject", "marks"]
 # spark = SparkSession.builder.appName("student_marks").getOrCreate()
 
-# df1 = spark.createDataFrame(data1, schema1)
-# df2 = spark.createDataFrame(data2, schema2)
+df1 = spark.createDataFrame(data1, schema1)
+df2 = spark.createDataFrame(data2, schema2)
 
 # df1.show()
 # df2.show()
+
+# df2.printSchema()
+
+# df3 = df2.withColumn('id',df2.id.cast(StringType()))
+# df3.printSchema()
+
+
 # df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id).show()
 
 # df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id)
@@ -142,11 +162,11 @@ from pyspark.sql.window import *
 
 # df_rank.filter(df_rank.Rank == 1).show()
 
-spark = (
-    SparkSession
-    .builder
-    .appName("EmployeeSalary")
-    .master("local[*]")
+# spark = (
+#     SparkSession
+#     .builder
+#     .appName("EmployeeSalary")
+#     .master("local[*]")
     # .config("spark.sql.shuffle.partitions", "2")  # Set number of shuffle partitions
     # .config("spark.sql.execution.arrow.pyspark.enabled", "true")  # Enable Arrow for better performance
     # .config("spark.sql.execution.arrow.pyspark.fallback.enabled", "true")  # Fallback to non-Arrow execution if needed
@@ -159,19 +179,65 @@ spark = (
     # .config("spark.sql.files.maxPartitionNum", "100")  # Set maximum number of partitions to 100
     # .config("spark.sql.files.maxRecordsPerFile", "1000000")  # Set max records per file to 1 million
 
-    .getOrCreate()
-    )
+    # .getOrCreate()
+    # )
 
-data1 = [(100,"RAJ",None,1,'01-04-23',5000),(200,"Joanne",100,1,'01-04-23',4000),(200,"Joanne",100,1,'13-04-23',4500),(200,"Joanne",100,1,'14-04-23',4020)]
+# data1 = [(100,"RAJ",None,1,'01-04-23',50000),(200,"Joanne",100,1,'01-04-23',40000),(200,"Joanne",100,1,'13-04-23',45000),(200,"Joanne",100,1,'14-04-23',40200)]
 
-schema1 = ["EmpId","EmpName","MgrId","DeptId","SalaryDate","Salary"]
+# schema1 = ["EmpId","EmpName","MgrId","DeptId","SalaryDate","Salary"]
+# df_salary = spark.createDataFrame(data1,schema1)
+# df_salary = spark.createDataFrame(data1,schema1).where("salary>4000")
 
-df_salary = spark.createDataFrame(data1,schema1)
-df_salary.show()
+# emp_df_csv = df_salary.write.format("csv").save("/Data-Engineering-proj1/emp_df.csv")
+# df_salary.show()
+# select_cols = df_salary.select(col('EmpId'),expr('EmpName'),df_salary.MgrId,df_salary.Salary)
+# select_cols.show()
+# df_salary.printSchema()
+# df_salary.show()
+# Pt = df_salary.rdd.getNumPartitions()
+# print(Pt)
 # data2 = [(1,"IT"),(2,"HR")]
 # schema2 = ["DeptId","DeptName"]
 # df_dept = spark.createDataFrame(data2,schema2)
 # df_dept.show()
+
+# schema_str = "name string, age int"
+# from pyspark.sql.types import _parse_datatype_string 
+# schema_spark = _parse_datatype_string(schema_str)
+
+# from pyspark.sql.functions import lit
+# # df_salary.show()
+# df_salary_tax = df_salary.withColumnRenamed("EmpName","EmployeeName").withColumn("Tax",col("salary") * 0.1).withColumn("ColumnOne",lit(1)).withColumn("ColumnTwo",lit(2))
+# df_salary_tax = df_salary.withColumnRenamed("EmpName","EmployeeName")
+# df_salary_tax.drop("ColumnTwo").show()
+# df_salary_tax.limit(2).show()
+# df_dept.printSchema()
+
+# columns = {
+#     "tax": col("salary") * 0.2, 
+#     "oneNumber": lit(1),
+#     "twoNumber": lit(2)
+# }
+
+# emp_final = df_salary.withColumns(columns)
+# emp_final.show()
+
+# from pyspark.sql.functions import when
+
+# emp_gender = df_salary.withColumn("salary1", when(col("salary") == 50000, 'More then 50000').when(col("salary")<50000, 'Less then 50000').otherwise(None))
+
+# emp_gender.show()
+
+# from pyspark.sql.functions import current_date, current_timestamp
+# from pyspark.sql.functions import desc,asc,col
+
+# df_orderby = df_salary.orderBy(col("salary").desc())
+
+# df_orderby.show()
+
+
+
+# adding multiple columns 
 
 # df = df_salary.withColumn('newsaldt',to_date('SalaryDate','dd-mm-yy'))
 
@@ -181,6 +247,37 @@ df_salary.show()
 # df1 = df.join(df_dept,df.DeptId == df_dept.DeptId, how = 'inner').drop(df_dept.DeptId)
 # # df1 = df.join(df_dept,['DeptId'])
 # df1.show()
+
+# from pyspark.sql.functions import avg 
+
+# df_avg = df1.groupBy('DeptName').agg(avg("salary").alias("AvgSalary")).where(col("AvgSalary") > 40000)
+# df_avg.show()
+
+# df_distinct =df1.select('DeptName').distinct()
+# df_distinct.show()
+
+# from pyspark.sql.window import Window
+
+# window_spec = Window.partitionBy(col('DeptName')).orderBy(col('salary').desc())
+# max_func = max(col("salary")).over(window_spec)
+# d_rank = dense_rank().over(window_spec)
+
+# df_max = df1.withColumn('max_salary',max_func)
+# df_rnk = df1.withColumn('Rank',d_rank).withColumn('max_salary',max_func)
+# df_max.show()
+# df_rnk.show()
+
+# from pyspark.sql.window import Window 
+# from pyspark.sql.functions import row_number, desc, col
+
+# window_spec = Window.partitionBy(col('DeptName')).orderBy(col('salary').desc())
+
+# rn = row_number().over(window_spec)
+# df_row_num = df1.withColumn("RowNum", rn).withColumn('max_salary',max_func).withColumn('Rank',d_rank)
+# df_row_num.show()
+
+# df_count = df1.groupBy('DeptName').agg(sum("salary").alias("TotalSalary"))
+# df_count.show()
 
 # df2 = df1.alias('a').join(df1.alias('b'),col('a.MgrId') ==col('b.EmpId'),'left').select(col('a.DeptName'),col('b.EmpName').alias('ManagerName'),col('a.EmpName').alias('EmployeeName'),col('a.SalaryDAte'),col('a.newsaldt'),col('a.Salary'))
 # df2.show()

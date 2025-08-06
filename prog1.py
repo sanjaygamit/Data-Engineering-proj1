@@ -1,4 +1,4 @@
-import os
+# import os
 # orders_file = open('data-engineering-proj1/retail_db/orders/part-00000', 'r')
 # print(orders_file.read())
 # orders_str = orders_file.read()
@@ -132,22 +132,22 @@ import os
 # dict_to_touple()
 #--------------------------------------#
 
-orders = ['1,2013-07-25 00:00:00.0,11599,CLOSED',
-'2,2013-07-25 00:00:00.0,256,PENDING_PAYMENT',
-'3,2013-07-25 00:00:00.0,12111,COMPLETE',
-'4,2013-07-25 00:00:00.0,8827,CLOSED',
-'5,2013-07-25 00:00:00.0,11318,COMPLETE',
-'6,2013-07-25 00:00:00.0,7130,COMPLETE',
-'7,2013-07-25 00:00:00.0,4530,COMPLETE',
-'8,2013-07-25 00:00:00.0,2911,PROCESSING',
-'9,2013-07-25 00:00:00.0,5657,PENDING_PAYMENT',
-'10,2013-07-25 00:00:00.0,5648,PENDING_PAYMENT']
+# orders = ['1,2013-07-25 00:00:00.0,11599,CLOSED',
+# '2,2013-07-25 00:00:00.0,256,PENDING_PAYMENT',
+# '3,2013-07-25 00:00:00.0,12111,COMPLETE',
+# '4,2013-07-25 00:00:00.0,8827,CLOSED',
+# '5,2013-07-25 00:00:00.0,11318,COMPLETE',
+# '6,2013-07-25 00:00:00.0,7130,COMPLETE',
+# '7,2013-07-25 00:00:00.0,4530,COMPLETE',
+# '8,2013-07-25 00:00:00.0,2911,PROCESSING',
+# '9,2013-07-25 00:00:00.0,5657,PENDING_PAYMENT',
+# '10,2013-07-25 00:00:00.0,5648,PENDING_PAYMENT']
 
 
-print(orders)  
-order = orders[0]
-print(order)
-print(order.split(',')[0])
+# print(orders)  
+# order = orders[0]
+# print(order)
+# print(order.split(',')[0])
 # print(order.split(',')[0] + ' ' + order.split(',')[1] + ' ' + order.split(',')[2] + ' ' + order.split(',')[3]) 
 
 # print(orders)
@@ -243,3 +243,15 @@ print(order.split(',')[0])
 
 # df.dropDuplicate()
 
+
+j = [1,2,5,7,8,9]
+
+def second_highest(n):  
+    l = sorted(n, reverse=True)
+    d = []
+    for i in l :
+        d.append(i)
+    result = d[1]
+    return result
+    
+print(second_highest(j)) 
