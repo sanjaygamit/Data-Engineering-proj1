@@ -457,3 +457,21 @@ print(list(set(df5.schema)))
 allcol = df5.columns + df4.columns
 unique_col = list(set(allcol))
 print(unique_col)
+
+for i in unique_col:
+    if i in df5.columns:
+        print(f"Column {i} is present in df5")
+    else:
+        print(f"Column {i} is not present in df5")  
+
+
+# from pyspark.sql.functions import lit 
+
+# for i in unique_col:
+#     if i not in df1.columns:
+#         df1 = df1.withColumn(i,lit(None))
+#     if i not in df2.columns:
+#         df2 = df2.withColumn(i,lit(None))
+
+
+
