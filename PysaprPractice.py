@@ -406,7 +406,7 @@ data4 = [
     ("Banana",1000,"USA"),("Carrot",1500,"USA"),("Beans",1600,"USA"),\
     ("Orange",2000,"USA"),("Orange",2000,"USA"),("Banana",400,"China"),\
     ("Carrot",1200,"China"),("Beans",1500,"China"),("Orange",1500,"China"),\
-    ("Banana",2000,"Canada"),("Carrots",2000,"Canada"),("Beans",1600,"Maxico")]
+    ("Banana",2000,"Canada"),("Carrot",2000,"Canada"),("Beans",1600,"Maxico")]
 schema4 = ["Product","Amount","Country"]
 
 df = spark.createDataFrame(data, schema)
@@ -430,4 +430,7 @@ df4 = spark.createDataFrame(data4, schema4)
 # df.select(df.Country,df.States,explode(df.States).alias("State","Capital")).show()
 # df.select(df.Country,df.States, map_keys(df.States).alias('State'),map_values(df.States).alias('Capital'),explode(df.States).alias('State','Capital')).show()
 
-df4.show()
+# df4.show()
+
+df_o = df4.groupBy('Product').pivot('Country').sum('Amount')
+df_o.show()
