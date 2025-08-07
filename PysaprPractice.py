@@ -121,6 +121,8 @@ df2 = spark.createDataFrame(data2, schema2)
 # df3 = df2.withColumn('id',df2.id.cast(StringType()))
 # df3.printSchema()
 
+df2.withColumn('len',length(col("subject"))).withColumn('trim',trim(df2.subject)).show()
+
 
 # df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id).show()
 
