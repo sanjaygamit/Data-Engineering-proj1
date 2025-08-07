@@ -446,3 +446,10 @@ df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
 # df_o.show()
 
 # df5.show()
+# for i in df5.collect():
+#     print(f"Department: {i.DeptName}, ID : {i.DeptId}")
+
+# for i in df5:
+#     print(i[1])
+
+print(list(set(df5.schema)))
