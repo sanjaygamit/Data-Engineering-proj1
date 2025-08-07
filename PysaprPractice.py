@@ -503,3 +503,4 @@ from pyspark.sql.functions import *
 # df6.select(df6.id,df6.fullname,array_repeat(df6.fullname,4)).show()
 
 df6.select(df6.fullname,array_position(df6.fullname,'K'),array_position(df6.fullname,'A')).show()
+
