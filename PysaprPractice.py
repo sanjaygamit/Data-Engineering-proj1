@@ -432,5 +432,8 @@ df4 = spark.createDataFrame(data4, schema4)
 
 # df4.show()
 
-df_o = df4.groupBy('Product').pivot('Country').sum('Amount')
+country = ['Canada','China','USA']
+
+# df_o = df4.groupBy('Product').pivot('Country').sum('Amount')
+df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
 df_o.show()
