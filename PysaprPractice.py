@@ -555,4 +555,6 @@ df10 = spark.createDataFrame(data10, schema910)
 
 # df8.select('*',explode(df8.Items).alias('Item','Value')).show()
 
-df9.show()
+# df9.show()
+
+df10.show()
