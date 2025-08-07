@@ -354,18 +354,7 @@ from pyspark.sql.window import *
 # Unity Catalogs 
 # spark =SparkSession.builder.appName("array_example").getOrCreate()
 
-# data = [
-#     ("James,,Smith",["ADF","Scala","PySpark"],["Pyspark","ADF"],"OH","CA"),
-#     ("Michael,Rose,",["Java","C++","Python"],["Java","Python"],"NY","NJ"),
-#     ("Robert,,Williams",["CSharp","VB"],["CSharp"],"UT","NV")
-# ]
-# schema = StructType([
-#     StructField("name", StringType(), True),
-#     StructField("skills", ArrayType(StringType()), True),
-#     StructField("workprofile", ArrayType(StringType()), True),
-#     StructField("currentState", StringType(), True),
-#     StructField("previousState", StringType(), True)
-# ])
+
 
 # df = spark.createDataFrame(data, schema)
 
@@ -393,8 +382,29 @@ schema = StructType([
     StructField("States", MapType(StringType(), StringType()), True)
 ])
 
+data1 = [
+    ("James,,Smith",["ADF","Scala","PySpark"],["Pyspark","ADF"],"OH","CA"),
+    ("Michael,Rose,",["Java","C++","Python"],["Java","Python"],"NY","NJ"),
+    ("Robert,,Williams",[],["CSharp"],"UT","NV")
+]
+schema1 = StructType([
+    StructField("name", StringType(), True),
+    StructField("skills", ArrayType(StringType()), True),
+    StructField("workprofile", ArrayType(StringType()), True),
+    StructField("currentState", StringType(), True),
+    StructField("previousState", StringType(), True)
+])
+
 df = spark.createDataFrame(data, schema)
+
+df1 = spark.createDataFrame(data1, schema1)
+
+df1.select("name",df1.skills,explode(df1.skills).alias("skill")).show()
+
+df1.select("name",df1.skills,explode_outer(df1.skills).alias('ex_skill')).show()
+
 
 # df.select("Country", explode("States").alias("State", "Capital")).show()
 
-df.select(df.Country,df.States,explode(df.States).alias("State","Capital")).show()
+# df.select(df.Country,df.States,explode(df.States).alias("State","Capital")).show()
+# df.select(df.Country,df.States, map_keys(df.States).alias('State'),map_values(df.States).alias('Capital'),explode(df.States).alias('State','Capital')).show()
