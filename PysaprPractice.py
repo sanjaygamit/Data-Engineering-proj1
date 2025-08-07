@@ -449,6 +449,14 @@ data10 = [(1,"Mike","2018","10",30000),
 
 schema910 = ['empid','empname','doj','deptid','salary']
 
+data11 = [
+    ("Abhishek",85,90,88,"2009-01-13"),
+    ("Shyam",92,87,93,"2010-01-13"),
+    ("Sandhya",88,89,91,"2009-01-13")
+]
+
+schema11 = ["name","maths","physics","chemistry","Passyear"]
+
 
 df = spark.createDataFrame(data, schema)
 
@@ -469,7 +477,10 @@ df7 = spark.createDataFrame(data7,schema7)
 df8 = spark.createDataFrame(data8, schema8)
 
 df9 = spark.createDataFrame(data9, schema910)
+
 df10 = spark.createDataFrame(data10, schema910)
+
+df11 = spark.createDataFrame(data11, schema11)
 
 # df9.show()
 
@@ -560,4 +571,10 @@ df10 = spark.createDataFrame(data10, schema910)
 # df10.show()
 
 
-df9.subtract(df10).show()
+# df9.subtract(df10).show()
+
+# df9.exceptAll(df10).show()
+
+# df11.show()
+
+df11.withColumn('NewPassYear',to_date(df11.Passyear)).show()
