@@ -409,6 +409,11 @@ data4 = [
     ("Banana",2000,"Canada"),("Carrot",2000,"Canada"),("Beans",1600,"Maxico")]
 schema4 = ["Product","Amount","Country"]
 
+data5 = [
+    ("Finance",10),("Marketing",20),("Sales",30),("It",48)
+]
+schema5 = ["DeptName","DeptId"]
+
 df = spark.createDataFrame(data, schema)
 
 df1 = spark.createDataFrame(data1, schema1)
@@ -418,6 +423,8 @@ df2 = spark.createDataFrame(data2, schema2)
 df3 = spark.createDataFrame(data3, schema3)
 
 df4 = spark.createDataFrame(data4, schema4) 
+
+df5 = spark.createDataFrame(data5, schema5)
 
 
 # df1.select("name",df1.skills,explode(df1.skills).alias("skill")).show()
@@ -436,4 +443,6 @@ country = ['Canada','China','USA']
 
 # df_o = df4.groupBy('Product').pivot('Country').sum('Amount')
 df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
-df_o.show()
+# df_o.show()
+
+# df5.show()
