@@ -519,5 +519,7 @@ df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
 
 # df6.select(df6.fullname,array_position(df6.fullname,'K'),array_position(df6.fullname,'A')).show()
 
-df7.printSchema()
-df7.show()
+# df7.printSchema()
+# df7.show()
+
+df7.select('*',df7.Address.Add1.alias('Add1'),df7.Address.City.alias('City'),df7.Address.Country.alias('Country')).show()
