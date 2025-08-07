@@ -395,16 +395,32 @@ schema1 = StructType([
     StructField("previousState", StringType(), True)
 ])
 
+data2 = [(1,"Steve"), (2,"David"), (3,"John"), (4,"Shree"), (5,"Helen")]
+data3 = [(1,"sql",90), (1,"pyspark",100), (2,"sql",70), (2,"pyspark",60), (3,"sql",30), (3,"pyspark",20), (4,"sql",50), (4,"pyspark",50), (5,"sql",45), (5,"pyspark",45)]
+
+schema2 = ["id", "name"]
+schema3 = ["id", "subject", "marks"]
+# spark = SparkSession.builder.appName("student_marks").getOrCreate()
+
+
 df = spark.createDataFrame(data, schema)
 
 df1 = spark.createDataFrame(data1, schema1)
 
+df2 = spark.createDataFrame(data2, schema2)
+
+df3 = spark.createDataFrame(data3, schema3)
+
+
 # df1.select("name",df1.skills,explode(df1.skills).alias("skill")).show()
-df1.select("name",df1.skills,posexplode(df1.skills)).show()
+# df1.select("name",df1.skills,posexplode(df1.skills)).show()
 # df1.select("name",df1.skills,explode_outer(df1.skills).alias('ex_skill')).show()
-df1.select("name",df1.skills,posexplode_outer(df1.skills)).show()
+# df1.select("name",df1.skills,posexplode_outer(df1.skills)).show()
 
 # df.select("Country", explode("States").alias("State", "Capital")).show()
 
 # df.select(df.Country,df.States,explode(df.States).alias("State","Capital")).show()
 # df.select(df.Country,df.States, map_keys(df.States).alias('State'),map_values(df.States).alias('Capital'),explode(df.States).alias('State','Capital')).show()
+
+df2.show()
+df3.show()
