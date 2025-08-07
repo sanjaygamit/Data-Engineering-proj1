@@ -400,7 +400,7 @@ df = spark.createDataFrame(data, schema)
 df1 = spark.createDataFrame(data1, schema1)
 
 df1.select("name",df1.skills,explode(df1.skills).alias("skill")).show()
-
+# df1.select("name",df1.skills,posexplode(df1.skills).alias("skill")).show()
 df1.select("name",df1.skills,explode_outer(df1.skills).alias('ex_skill')).show()
 
 
