@@ -30,11 +30,11 @@ from pyspark.sql.window import *
 # Julie | Carroms
 
 
-data = [('Alice', 'Badminton, Tennis'),
-        ('Bob', 'Tennis, Cricket'),
-        ('Julie', 'Cricket, Carroms')]
-columns = ['name','hobbies']
-spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
+# data = [('Alice', 'Badminton, Tennis'),
+#         ('Bob', 'Tennis, Cricket'),
+#         ('Julie', 'Cricket, Carroms')]
+# columns = ['name','hobbies']
+# spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
 
 # df = spark.read.option('header',True).csv('/Users/sanjaykumarshantilal/Documents/Python/Databricks/Data-Engineering-proj1/retail_db/orders/part-00000', header=True, inferSchema=True)
 
@@ -103,23 +103,23 @@ spark = SparkSession.builder.appName("HobbiesSplit").getOrCreate()
 # 3          | pyspark      | 20 
 
 
-data1 = [(1,"Steve"), (2,"David"), (3,"John"), (4,"Shree"), (5,"Helen")]
-data2 = [(1,"sql",90), (1,"pyspark",100), (2,"sql",70), (2,"pyspark",60), (3,"sql",30), (3,"pyspark",20), (4,"sql",50), (4,"pyspark",50), (5,"sql",45), (5,"pyspark",45)]
+# data1 = [(1,"Steve"), (2,"David"), (3,"John"), (4,"Shree"), (5,"Helen")]
+# data2 = [(1,"sql",90), (1,"pyspark",100), (2,"sql",70), (2,"pyspark",60), (3,"sql",30), (3,"pyspark",20), (4,"sql",50), (4,"pyspark",50), (5,"sql",45), (5,"pyspark",45)]
 
-schema1 = ["id", "name"]
-schema2 = ["id", "subject", "marks"]
+# schema1 = ["id", "name"]
+# schema2 = ["id", "subject", "marks"]
 # spark = SparkSession.builder.appName("student_marks").getOrCreate()
 
-df1 = spark.createDataFrame(data1, schema1)
-df2 = spark.createDataFrame(data2, schema2)
+# df1 = spark.createDataFrame(data1, schema1)
+# df2 = spark.createDataFrame(data2, schema2)
 
 # df1.show()
 # df2.show()
 
-df2.withColumn('srn',row_number().over(Window.orderBy(df2.marks))).withColumn('r_srn',rank().over(Window.orderBy(df2.marks))).withColumn('d_srn',dense_rank().over(Window.orderBy(df2.marks))).show()
+# df2.withColumn('srn',row_number().over(Window.orderBy(df2.marks))).withColumn('r_srn',rank().over(Window.orderBy(df2.marks))).withColumn('d_srn',dense_rank().over(Window.orderBy(df2.marks))).show()
 
 
-df2.withColumn('srn', row_number().over(Window.partitionBy(df2.subject).orderBy(df2.marks.desc()))).show()
+# df2.withColumn('srn', row_number().over(Window.partitionBy(df2.subject).orderBy(df2.marks.desc()))).show()
 # df2.printSchema()
 
 # df3 = df2.withColumn('id',df2.id.cast(StringType()))
@@ -352,3 +352,22 @@ df2.withColumn('srn', row_number().over(Window.partitionBy(df2.subject).orderBy(
 
 
 # Unity Catalogs 
+
+spark =SparkSession.builder.appName("array_example").getOrCreate()
+
+data = [
+    ("James,,Smith",["ADF","Scala","PySpark"],["Pyspark","ADF"],"OH","CA"),
+    ("Michael,Rose,",["Java","C++","Python"],["Java","Python"],"NY","NJ"),
+    ("Robert,,Williams",["CSharp","VB"],["CSharp"],"UT","NV")
+]
+schema = StructType([
+    StructField("name", StringType(), True),
+    StructField("skills", ArrayType(StringType()), True),
+    StructField("workprofile", ArrayType(StringType()), True),
+    StructField("currentState", StringType(), True),
+    StructField("previousState", StringType(), True)
+])
+
+df = spark.createDataFrame(data, schema)
+
+df.printSchema()
