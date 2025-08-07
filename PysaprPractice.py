@@ -433,7 +433,7 @@ df5 = spark.createDataFrame(data5, schema5)
 
 df6 = spark.createDataFrame(data6,schema6)
 
-df6.show()
+# df6.show()
 
 # df1.select("name",df1.skills,explode(df1.skills).alias("skill")).show()
 # df1.select("name",df1.skills,posexplode(df1.skills)).show()
@@ -494,5 +494,12 @@ df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
 #     return df1, df2 
 
 
+from pyspark.sql.functions import * 
 
 # array_repeat() # array_position()        
+
+# df6.select(df6.id,explode(df6.fullname).alias('FullName')).show()
+
+# df6.select(df6.id,df6.fullname,array_repeat(df6.fullname,4)).show()
+
+df6.select(df6.fullname,array_position(df6.fullname,'K')).show()
