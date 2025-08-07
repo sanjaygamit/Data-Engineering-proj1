@@ -436,6 +436,19 @@ schema8 = StructType([
     StructField('Items', MapType(StringType(),StringType()),True)
 ])
 
+data9 = [(1,"Mike","2018","10",30000),
+          (2,"John","2010","20",40000),
+          (2,"John","2010","20",40000),
+          (3,"Jack","2010","10",40000),
+          (4,"Charles","2005","60",35000),
+          (5,"Guo","2010","40",38000)]
+
+data10 = [(1,"Mike","2018","10",30000),
+          (4,"Charles","2005","60",35000),
+          (5,"Guo","2010","40",38000)]
+
+schema910 = ['empid','empname','doj','deptid','salary']
+
 
 df = spark.createDataFrame(data, schema)
 
@@ -455,6 +468,10 @@ df7 = spark.createDataFrame(data7,schema7)
 
 df8 = spark.createDataFrame(data8, schema8)
 
+df9 = spark.createDataFrame(data9, schema910)
+df10 = spark.createDataFrame(data10, schema910)
+
+# df9.show()
 
 # df7.show()
 # df6.show()
@@ -471,10 +488,10 @@ df8 = spark.createDataFrame(data8, schema8)
 
 # df4.show()
 
-country = ['Canada','China','USA']
+# country = ['Canada','China','USA']
 
 # df_o = df4.groupBy('Product').pivot('Country').sum('Amount')
-df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
+# df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
 # df_o.show()
 
 # df5.show()
@@ -536,5 +553,6 @@ df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
 
 # df8.show()
 
-df8.select('*',explode(df8.Items).alias('Item','Value')).show()
+# df8.select('*',explode(df8.Items).alias('Item','Value')).show()
 
+df9.show()
