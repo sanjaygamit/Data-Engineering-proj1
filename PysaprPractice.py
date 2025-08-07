@@ -116,12 +116,16 @@ df2 = spark.createDataFrame(data2, schema2)
 # df1.show()
 # df2.show()
 
+df2.withColumn('srn',row_number().over(Window.orderBy(df2.marks))).withColumn('r_srn',rank().over(Window.orderBy(df2.marks))).withColumn('d_srn',dense_rank().over(Window.orderBy(df2.marks))).show()
+
+
+df2.withColumn('srn', row_number().over(Window.partitionBy(df2.subject).orderBy(df2.marks.desc()))).show()
 # df2.printSchema()
 
 # df3 = df2.withColumn('id',df2.id.cast(StringType()))
 # df3.printSchema()
 
-df2.withColumn('len',length(col("subject"))).withColumn('trim',trim(df2.subject)).show()
+# df2.withColumn('len',length(col("subject"))).withColumn('trim',trim(df2.subject)).show()
 
 
 # df_join = df1.join(df2, df1.id == df2.id, how = 'inner').drop(df2.id).show()
