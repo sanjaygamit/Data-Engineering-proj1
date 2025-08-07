@@ -429,6 +429,13 @@ schema7 = StructType([
     ]))
 ])
 
+data8 = [
+    (1,{'Laptop':'Apple',"Mobile":"OnePlus","Headphone":"boat"}),(2,{'Laptop':'Apple',"Mobile":"OnePlus"})]
+schema8 = StructType([
+    StructField('EmpId', IntegerType(),True),
+    StructField('Items', MapType(StringType(),StringType()),True)
+])
+
 
 df = spark.createDataFrame(data, schema)
 
@@ -445,6 +452,8 @@ df5 = spark.createDataFrame(data5, schema5)
 df6 = spark.createDataFrame(data6,schema6)
 
 df7 = spark.createDataFrame(data7,schema7)
+
+df8 = spark.createDataFrame(data8, schema8)
 
 
 # df7.show()
@@ -522,4 +531,8 @@ df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
 # df7.printSchema()
 # df7.show()
 
-df7.select('*',df7.Address.Add1.alias('Add1'),df7.Address.City.alias('City'),df7.Address.Country.alias('Country')).show()
+# df7.select('*',df7.Address.Add1.alias('Add1'),df7.Address.City.alias('City'),df7.Address.Country.alias('Country')).show()
+
+
+df8.show()
+
