@@ -370,4 +370,13 @@ schema = StructType([
 
 df = spark.createDataFrame(data, schema)
 
-df.printSchema()
+# df.printSchema()
+# df.show()
+
+
+df_1 = df.withColumn('New_col',array(df.currentState,df.previousState))
+# df_1.show()
+
+df_2 = df.withColumn('array_contains',array_contains(df.skills,'Scala'))
+df_2.show()
+
