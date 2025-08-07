@@ -475,3 +475,14 @@ for i in unique_col:
 
 
 
+def schemacompare(df1,df2):
+    allcol = df1.columns + df2.columns
+    unique_col = list(set(allcol))
+    for i in unique_col:
+        if i not in df1.columns:
+            df1 = df1.withColumn(i,lit(None))
+        if i not in df2.columns:
+            df2 = df2.withColumn(i,lit(None))    
+    return df1, df2 
+
+        
