@@ -577,4 +577,6 @@ df11 = spark.createDataFrame(data11, schema11)
 
 # df11.show()
 
-df11.withColumn('NewPassYear',to_date(df11.Passyear)).show()
+# df11.withColumn('NewPassYear',to_date(df11.Passyear)).show()
+
+df11.select('*',to_date(df11.Passyear,'yyyy-MM-dd').alias('NewPassYear')).show()
