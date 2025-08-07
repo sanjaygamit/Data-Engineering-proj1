@@ -419,6 +419,17 @@ data6 = [
        ]
 schema6 = ["id","fullname"]
 
+data7 = [(1,('A-424','Noida','India')),(2,('M.15','Unnao','India'))]
+schema7 = StructType([
+    StructField('AddId', IntegerType(),True),
+    StructField('Address', StructType([
+        StructField('Add1',StringType(),True),
+        StructField('City',StringType(),True),
+        StructField('Country',StringType(),True)
+    ]))
+])
+
+
 df = spark.createDataFrame(data, schema)
 
 df1 = spark.createDataFrame(data1, schema1)
@@ -433,6 +444,10 @@ df5 = spark.createDataFrame(data5, schema5)
 
 df6 = spark.createDataFrame(data6,schema6)
 
+df7 = spark.createDataFrame(data7,schema7)
+
+
+# df7.show()
 # df6.show()
 
 # df1.select("name",df1.skills,explode(df1.skills).alias("skill")).show()
@@ -494,7 +509,7 @@ df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
 #     return df1, df2 
 
 
-from pyspark.sql.functions import * 
+# from pyspark.sql.functions import * 
 
 # array_repeat() # array_position()        
 
@@ -502,5 +517,7 @@ from pyspark.sql.functions import *
 
 # df6.select(df6.id,df6.fullname,array_repeat(df6.fullname,4)).show()
 
-df6.select(df6.fullname,array_position(df6.fullname,'K'),array_position(df6.fullname,'A')).show()
+# df6.select(df6.fullname,array_position(df6.fullname,'K'),array_position(df6.fullname,'A')).show()
 
+df7.printSchema()
+df7.show()
