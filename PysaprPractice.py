@@ -557,4 +557,7 @@ df10 = spark.createDataFrame(data10, schema910)
 
 # df9.show()
 
-df10.show()
+# df10.show()
+
+
+df9.subtract(df10).show()
