@@ -453,3 +453,7 @@ df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
 #     print(i[1])
 
 print(list(set(df5.schema)))
+
+allcol = df5.columns + df4.columns
+unique_col = list(set(allcol))
+print(unique_col)
