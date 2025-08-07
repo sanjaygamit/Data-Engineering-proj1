@@ -3,7 +3,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import * 
 from pyspark.sql.functions import col,cast
 from pyspark.sql.functions import col, sum as _sum, desc # Alias sum to avoid conflict
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
+from pyspark.sql.types import *
 from pyspark.sql.functions import explode, split
 from pyspark.sql.window import *
 
@@ -352,31 +352,49 @@ from pyspark.sql.window import *
 
 
 # Unity Catalogs 
+# spark =SparkSession.builder.appName("array_example").getOrCreate()
 
-spark =SparkSession.builder.appName("array_example").getOrCreate()
+# data = [
+#     ("James,,Smith",["ADF","Scala","PySpark"],["Pyspark","ADF"],"OH","CA"),
+#     ("Michael,Rose,",["Java","C++","Python"],["Java","Python"],"NY","NJ"),
+#     ("Robert,,Williams",["CSharp","VB"],["CSharp"],"UT","NV")
+# ]
+# schema = StructType([
+#     StructField("name", StringType(), True),
+#     StructField("skills", ArrayType(StringType()), True),
+#     StructField("workprofile", ArrayType(StringType()), True),
+#     StructField("currentState", StringType(), True),
+#     StructField("previousState", StringType(), True)
+# ])
+
+# df = spark.createDataFrame(data, schema)
+
+# # df.printSchema()
+# # df.show()
+
+
+# df_1 = df.withColumn('New_col',array(df.currentState,df.previousState))
+# # df_1.show()
+
+# df_2 = df.withColumn('array_contains',array_contains(df.skills,'Scala'))
+# df_2.show()
+
+from pyspark.sql.types import * 
+
+spark = SparkSession.builder.appName('MapExample').getOrCreate()
 
 data = [
-    ("James,,Smith",["ADF","Scala","PySpark"],["Pyspark","ADF"],"OH","CA"),
-    ("Michael,Rose,",["Java","C++","Python"],["Java","Python"],"NY","NJ"),
-    ("Robert,,Williams",["CSharp","VB"],["CSharp"],"UT","NV")
+    ('India',{"Uttar Pradesh": "Lucknow", "Bihar":"Patna","Madhya Pradesh":"Bhopal","Delhi":"New Delhi"}),
+    ('USA',{"California": "Sacramento", "Texas":"Austin","Florida":"Tallahassee","New York":"Albany"})
 ]
+
 schema = StructType([
-    StructField("name", StringType(), True),
-    StructField("skills", ArrayType(StringType()), True),
-    StructField("workprofile", ArrayType(StringType()), True),
-    StructField("currentState", StringType(), True),
-    StructField("previousState", StringType(), True)
+    StructField("Country", StringType(), True),
+    StructField("States", MapType(StringType(), StringType()), True)
 ])
 
 df = spark.createDataFrame(data, schema)
 
-# df.printSchema()
-# df.show()
+# df.select("Country", explode("States").alias("State", "Capital")).show()
 
-
-df_1 = df.withColumn('New_col',array(df.currentState,df.previousState))
-# df_1.show()
-
-df_2 = df.withColumn('array_contains',array_contains(df.skills,'Scala'))
-df_2.show()
-
+df.select(df.Country,df.States,explode(df.States).alias("State","Capital")).show()
