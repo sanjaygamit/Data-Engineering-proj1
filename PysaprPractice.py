@@ -402,6 +402,12 @@ schema2 = ["id", "name"]
 schema3 = ["id", "subject", "marks"]
 # spark = SparkSession.builder.appName("student_marks").getOrCreate()
 
+data4 = [
+    ("Banana",1000,"USA"),("Carrot",1500,"USA"),("Beans",1600,"USA"),\
+    ("Orange",2000,"USA"),("Orange",2000,"USA"),("Banana",400,"China"),\
+    ("Carrot",1200,"China"),("Beans",1500,"China"),("Orange",1500,"China"),\
+    ("Banana",2000,"Canada"),("Carrots",2000,"Canada"),("Beans",1600,"Maxico")]
+schema4 = ["Product","Amount","Country"]
 
 df = spark.createDataFrame(data, schema)
 
@@ -410,6 +416,8 @@ df1 = spark.createDataFrame(data1, schema1)
 df2 = spark.createDataFrame(data2, schema2)
 
 df3 = spark.createDataFrame(data3, schema3)
+
+df4 = spark.createDataFrame(data4, schema4) 
 
 
 # df1.select("name",df1.skills,explode(df1.skills).alias("skill")).show()
@@ -422,5 +430,4 @@ df3 = spark.createDataFrame(data3, schema3)
 # df.select(df.Country,df.States,explode(df.States).alias("State","Capital")).show()
 # df.select(df.Country,df.States, map_keys(df.States).alias('State'),map_values(df.States).alias('Capital'),explode(df.States).alias('State','Capital')).show()
 
-df2.show()
-df3.show()
+df4.show()
