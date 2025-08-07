@@ -414,6 +414,11 @@ data5 = [
 ]
 schema5 = ["DeptName","DeptId"]
 
+data6 = [
+    (1,['A']),(2,['B','L','B']),(3,['K','A','K']),(4,['K']),(3,['B','P'])
+       ]
+schema6 = ["id","fullname"]
+
 df = spark.createDataFrame(data, schema)
 
 df1 = spark.createDataFrame(data1, schema1)
@@ -426,6 +431,9 @@ df4 = spark.createDataFrame(data4, schema4)
 
 df5 = spark.createDataFrame(data5, schema5)
 
+df6 = spark.createDataFrame(data6,schema6)
+
+df6.show()
 
 # df1.select("name",df1.skills,explode(df1.skills).alias("skill")).show()
 # df1.select("name",df1.skills,posexplode(df1.skills)).show()
@@ -452,17 +460,17 @@ df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
 # for i in df5:
 #     print(i[1])
 
-print(list(set(df5.schema)))
+# print(list(set(df5.schema)))
 
-allcol = df5.columns + df4.columns
-unique_col = list(set(allcol))
-print(unique_col)
+# allcol = df5.columns + df4.columns
+# unique_col = list(set(allcol))
+# print(unique_col)
 
-for i in unique_col:
-    if i in df5.columns:
-        print(f"Column {i} is present in df5")
-    else:
-        print(f"Column {i} is not present in df5")  
+# for i in unique_col:
+#     if i in df5.columns:
+#         print(f"Column {i} is present in df5")
+#     else:
+#         print(f"Column {i} is not present in df5")  
 
 
 # from pyspark.sql.functions import lit 
@@ -475,14 +483,16 @@ for i in unique_col:
 
 
 
-def schemacompare(df1,df2):
-    allcol = df1.columns + df2.columns
-    unique_col = list(set(allcol))
-    for i in unique_col:
-        if i not in df1.columns:
-            df1 = df1.withColumn(i,lit(None))
-        if i not in df2.columns:
-            df2 = df2.withColumn(i,lit(None))    
-    return df1, df2 
+# def schemacompare(df1,df2):
+#     allcol = df1.columns + df2.columns
+#     unique_col = list(set(allcol))
+#     for i in unique_col:
+#         if i not in df1.columns:
+#             df1 = df1.withColumn(i,lit(None))
+#         if i not in df2.columns:
+#             df2 = df2.withColumn(i,lit(None))    
+#     return df1, df2 
 
-        
+
+
+# array_repeat() # array_position()        
