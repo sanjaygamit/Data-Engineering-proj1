@@ -534,5 +534,7 @@ df_o = df4.groupBy('Product').pivot('Country',country).sum('Amount')
 # df7.select('*',df7.Address.Add1.alias('Add1'),df7.Address.City.alias('City'),df7.Address.Country.alias('Country')).show()
 
 
-df8.show()
+# df8.show()
+
+df8.select('*',explode(df8.Items).alias('Item','Value')).show()
 
