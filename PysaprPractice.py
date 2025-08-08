@@ -584,5 +584,7 @@ df11_1 = df11.select('*',to_date(df11.Passyear,'yyyy-mm-dd').alias('date'))
 
 # df.select('*',to_timestamp(df.Ne))
 
-df11_0 = df11_1.withColumn('datediff',datediff(current_date(),df11_1.date)).withColumn('monthdiff',months_between(current_date(),df11_1.date)).withColumn('monthdiff',round(months_between(current_date(),df11_1.date),2)).withColumn('Yeardiff',round(months_between(current_date(),df11_1.date)/lit(2),2))
+df11_0 = df11_1.withColumn('datediff',datediff(current_date(),df11_1.date)).withColumn('monthdiff',months_between(current_date(),df11_1.date)).withColumn('monthdiff',round(months_between(current_date(),df11_1.date),2)).withColumn('Yeardiff',round(months_between(current_date(),df11_1.date)/lit(2),2)).withColumn('Trunyear',trunc(df11_1.date,'year')).withColumn('TruncMonth',trunc(df11_1.date,'month'))
+
+
 df11_0.show()
