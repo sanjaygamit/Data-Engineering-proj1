@@ -606,4 +606,4 @@ df12.show()
 
 # df11_0.show()
 
-df12.select('*',add_months(df12.makeyear,3).alias('addmonths')).show()
+df12.select('*',add_months(df12.makeyear,3).alias('addmonths'),date_add(df12.makeyear,1).alias('dateadded')).show()
