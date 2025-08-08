@@ -455,6 +455,20 @@ data11 = [
     ("Sandhya",88,89,91,"2009-01-13")
 ]
 
+from datetime import datetime 
+
+data12 =  [
+    (1,"Japan", datetime.strptime("2022-06-21","%Y-%m-%d")),
+    (2,"Italy",datetime.strptime("2021-04-21","%Y-%m-%d")),
+    (3,"France",datetime.strptime("2020-09-06","%Y-%m-%d"))
+]
+
+schema12 = StructType([
+    StructField("cid",IntegerType(),True),
+    StructField("country",StringType(),True),
+    StructField("makeyear",DateType(),True)
+])
+
 schema11 = ["name","maths","physics","chemistry","Passyear"]
 
 
@@ -482,6 +496,9 @@ df10 = spark.createDataFrame(data10, schema910)
 
 df11 = spark.createDataFrame(data11, schema11)
 
+df12 = spark.createDataFrame(data12, schema12)
+
+df12.show()
 # df9.show()
 
 # df7.show()
@@ -575,16 +592,16 @@ df11 = spark.createDataFrame(data11, schema11)
 
 # df9.exceptAll(df10).show()
 
-df11.show()
+# df11.show()
 
 # df11.withColumn('NewPassYear',to_date(df11.Passyear)).show()
 
-df11_1 = df11.select('*',to_date(df11.Passyear,'yyyy-mm-dd').alias('date'))
+# df11_1 = df11.select('*',to_date(df11.Passyear,'yyyy-mm-dd').alias('date'))
 # df.select('*',current_timestamp()).show()
 
 # df.select('*',to_timestamp(df.Ne))
 
-df11_0 = df11_1.withColumn('datediff',datediff(current_date(),df11_1.date)).withColumn('monthdiff',months_between(current_date(),df11_1.date)).withColumn('monthdiff',round(months_between(current_date(),df11_1.date),2)).withColumn('Yeardiff',round(months_between(current_date(),df11_1.date)/lit(2),2)).withColumn('Trunyear',trunc(df11_1.date,'year')).withColumn('TruncMonth',trunc(df11_1.date,'month'))
+# df11_0 = df11_1.withColumn('datediff',datediff(current_date(),df11_1.date)).withColumn('monthdiff',months_between(current_date(),df11_1.date)).withColumn('monthdiff',round(months_between(current_date(),df11_1.date),2)).withColumn('Yeardiff',round(months_between(current_date(),df11_1.date)/lit(2),2)).withColumn('Trunyear',trunc(df11_1.date,'year')).withColumn('TruncMonth',trunc(df11_1.date,'month'))
 
 
-df11_0.show()
+# df11_0.show()
