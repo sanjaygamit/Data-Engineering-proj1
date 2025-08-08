@@ -575,8 +575,14 @@ df11 = spark.createDataFrame(data11, schema11)
 
 # df9.exceptAll(df10).show()
 
-# df11.show()
+df11.show()
 
 # df11.withColumn('NewPassYear',to_date(df11.Passyear)).show()
 
-df11.select('*',to_date(df11.Passyear,'yyyy-MM-dd').alias('NewPassYear')).show()
+df11_1 = df11.select('*',to_date(df11.Passyear,'yyyy-mm-dd').alias('date'))
+# df.select('*',current_timestamp()).show()
+
+# df.select('*',to_timestamp(df.Ne))
+
+df11_0 = df11_1.withColumn('datediff',datediff(current_date(),df11_1.date)).withColumn('monthdiff',months_between(current_date(),df11_1.date)).withColumn('monthdiff',round(months_between(current_date(),df11_1.date),2)).withColumn('Yeardiff',round(months_between(current_date(),df11_1.date)/lit(2),2))
+df11_0.show()
