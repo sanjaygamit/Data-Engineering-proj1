@@ -127,7 +127,7 @@ from pyspark.sql.window import *
 # df.show()
 
 # df_rank = df.select('*',
-                    # dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())).alias('Rank'))
+                    # dense_rank().over(Window.partitionB y(df.Department).orderBy(df.Salary.desc())).alias('Rank'))
 
 # df_rank = df.select('*',
 #                     dense_rank().over(Window.partitionBy(df.Department).orderBy(df.Salary.desc())).alias('Rank'))
@@ -209,23 +209,23 @@ df = spark.read.option('header',True).csv(path='dbfs:/mnt/output/sales.csv.gzip'
 
 
 # 9. Delimiter in pyspark | linesep in pyspark | inferSchema in pyspark 
-1. delimiter : This attribute can be used to specify single/multiple character(s) as a separated for each, column which reading 
-or writing using with option or option function. 
+# 1. delimiter : This attribute can be used to specify single/multiple character(s) as a separated for each, column which reading 
+# or writing using with option or option function. 
 
-2. inferSchema : it will automatically guess the datatypes for each field. If we set this option to Ture, the API will read some sample records from the file to infer the schema. If we want to set this value to false, we must specify a schema explicitly. 
+# 2. inferSchema : it will automatically guess the datatypes for each field. If we set this option to Ture, the API will read some sample records from the file to infer the schema. If we want to set this value to false, we must specify a schema explicitly. 
 
-3. linesep : This attribute can be used to specify single as a separated for each row while reading or writing a file using either 
-option or options. 
+# 3. linesep : This attribute can be used to specify single as a separated for each row while reading or writing a file using either 
+# option or options. 
 
-df = spark.read.option('header',True).load('/mnt/input/sales.csv',format='csv')
+# df = spark.read.option('header',True).load('/mnt/input/sales.csv',format='csv')
 
-df.write.option('header',True).mode('overwrite').csv(path = '/mnt/input/salesep.csv',sep='|',linesep = '/n')
+# df.write.option('header',True).mode('overwrite').csv(path = '/mnt/input/salesep.csv',sep='|',linesep = '/n')
 
-df1 = spark.read.option('header',True).option('inferSchema',True).csv(path = '/mnt/input/salesep.csv',sep='|',linesep = '/n')
+# df1 = spark.read.option('header',True).option('inferSchema',True).csv(path = '/mnt/input/salesep.csv',sep='|',linesep = '/n')
 
 
-10. How to load only correct records while reading data from file? 
-options mode(PERMISSIVE, DROPMALFORMED, FAILFAST)
+# 10. How to load only correct records while reading data from file? 
+# options mode(PERMISSIVE, DROPMALFORMED, FAILFAST)
 
 # PERMISSIVE : When it meets a corrupted record, puts the malformed string into a field configured by columnNameofCorruptRecord, and sets malformed fields to null. To keep corrupt records, an user can set a string type field named columnNameofCorruptRecord in an user defined schema.  
 
